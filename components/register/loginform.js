@@ -1,43 +1,88 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import Link from "next/link";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import Switch from "@mui/material/Switch";
+import { useTheme } from "@mui/styles";
 
 import FormShap from "./form-shap";
 import {
   Screen,
-  ScreenContent,
   Login,
-  LoginFeild,
-  PersonIconStyle,
-  LockIconStyle,
-  LoginInput,
-  LoginSubmit,
-  IconSubmit,
   Signup,
   NoAccount,
-  IconStyle
+  IconStyle,
+  LoginFeild,
+  LoginInput,
+  IconSubmit,
+  LoginSubmit,
+  ScreenContent,
+  LockIconStyle,
+  PhoneIphoneIconStyle,
 } from "./style";
 
-const Form = () => {
+const Form = (props) => {
+  const theme = useTheme()
+  const [labelName, setLabelName] = useState("otp");
+  const handleChange = useCallback((e) => {
+    if (labelName == "otp") {
+      setLabelName("password");
+    } else {
+      setLabelName("otp");
+    }
+  }, [labelName]);
+
   return (
     <Screen>
       <ScreenContent>
         <Login>
           <LoginFeild>
-            <PersonIconStyle sx={IconStyle}/>
-            <LoginInput type="text" placeholder="User name / Email" />
+            <PhoneIphoneIconStyle sx={IconStyle} theme={theme}/>
+            <LoginInput
+              type="text"
+              placeholder="Phone / Email"
+              value={props.value}
+              onChange={props.handleChangeValue}
+            />
           </LoginFeild>
-          <LoginFeild>
-            <LockIconStyle sx={IconStyle}/>
-            <LoginInput type="password" placeholder="Password" />
-          </LoginFeild>
+          <FormControl>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={labelName == "otp" ? true : false}
+                  onChange={handleChange}
+                  size="small"
+                  color="primary"
+                />
+              }
+              label={labelName}
+            />
+          </FormControl>
+          {
+            labelName == 'otp' ? null : (
+              <LoginFeild>
+                <LockIconStyle sx={IconStyle} theme={theme}/>
+                <LoginInput
+                  type="password"
+                  placeholder="Password"
+                  value={props.password}
+                  onChange={props.handleChangeEmail}
+                />
+              </LoginFeild>
+            )
+          }
           <LoginSubmit>
             <span>Log In</span>
             <IconSubmit />
           </LoginSubmit>
         </Login>
-        <Signup>
+        <Signup onClick={props.handleLogin}>
           <NoAccount>have not account </NoAccount>
-          <NoAccount><Link href="/signup">Sign Up</Link></NoAccount>
+          <NoAccount>
+            <Link href="/signup" style={{ color: "#FFF" }}>
+              Sign Up
+            </Link>
+          </NoAccount>
         </Signup>
         <FormShap />
       </ScreenContent>
@@ -45,4 +90,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default React.memo(Form);

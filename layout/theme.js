@@ -2,8 +2,8 @@
 
 export const customTheme = {
   palette: {
-    primary: {main: '#04DBC0'},
-    secondary: {main: '#5856D6'},
+    primary: {main: '#154a69'},
+    secondary: {main: '#04DBC0'}, //#5856D6
     dark: '#000',
     light: '#FFF',
     third: '#50a3a2',

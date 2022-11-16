@@ -8,7 +8,7 @@ import TopBar from "../features/topBar";
 import Navbar from "../features/navbar";
 import Footer from "../features/footer";
 import "../styles/globals.css";
-import store from "../store/index";
+import {store} from "../store/index";
 
 const theme = createTheme(customTheme);
 function MyApp({ Component, pageProps }) {
@@ -26,8 +26,8 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
       <Provider store={store}>
-        {/* <TopBar /> */}
-        {/* <Navbar /> */}
+        <TopBar />
+        <Navbar />
         <Component {...pageProps} />
         <Footer />
       </Provider>

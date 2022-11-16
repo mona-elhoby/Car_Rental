@@ -1,15 +1,16 @@
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/css";
+import Input from '@mui/material/Input';
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import MailIcon from "@mui/icons-material/Mail";
 import BusinessIcon from "@mui/icons-material/Business";
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export const Wrapper = styled.div`
-  background: #50a3a2;
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+  background: #a2a2b1;
+  background: ${props => `linear-gradient(to bottom right, #a2a2b1 0%, ${props.theme.palette.primary.main} 100%)`};
   position: absolute;
   left: 0;
   width: 100%;
@@ -25,11 +26,11 @@ export const Container = styled.div`
 `;
 
 export const Screen = styled.div`
-  background: linear-gradient(90deg, #50a3a2, #53e3a6);
+  background: ${props => `linear-gradient(90deg, #a2a2b1, ${props.theme.palette.primary.main})`};
   position: relative;
   height: 600px;
   width: 360px;
-  box-shadow: 0px 0px 24px #53e3a6;
+  box-shadow: ${props => `0px 0px 24px ${props.theme.palette.primary.main}`};
 `;
 
 export const ScreenContent = styled.div`
@@ -167,7 +168,7 @@ export const ScreenBkgShap1 = styled(ScreenBkgShap)`
 export const ScreenBkgShap2 = styled(ScreenBkgShap)`
   height: 220px;
   width: 220px;
-  background: #53e3a6;
+  background: ${props => props.theme.palette.primary.main};
   top: -172px;
   right: 0;
   border-radius: 32px;
@@ -176,7 +177,7 @@ export const ScreenBkgShap2 = styled(ScreenBkgShap)`
 export const ScreenBkgShap3 = styled(ScreenBkgShap)`
   height: 540px;
   width: 190px;
-  background: linear-gradient(270deg, #50a3a2, #53e3a6);
+  background: ${props => `linear-gradient(270deg, #a2a2b1, ${props.theme.palette.primary.main})`};
   top: -24px;
   right: 0;
   border-radius: 32px;
@@ -185,15 +186,15 @@ export const ScreenBkgShap3 = styled(ScreenBkgShap)`
 export const ScreenBkgShap4 = styled(ScreenBkgShap)`
   height: 400px;
   width: 200px;
-  background: #53e3a6;
+  background: ${props => props.theme.palette.primary.main};
   top: 420px;
   right: 50px;
   border-radius: 60px;
 `;
 
-export const Login = styled.form`
+export const Login = styled.div`
   width: 320px;
-  padding: 30px;
+  padding: 30px 0 30px 20px;
   padding-top: 156px;
 `;
 
@@ -208,39 +209,39 @@ export const LoginFeild = styled.div`
 const iconStyle = `
   position: absolute;
   top: 25px;
-  color: #53e3a6;
+  color: ${props => props.theme.palette.primary.main};
   width: .8em !important`;
 
 export const PersonIconStyle = styled(PersonIcon)`
-  ${iconStyle}
+  ${iconStyle};
+  color: ${props => props.theme.palette.primary.main};
 `;
 
 export const LockIconStyle = styled(LockIcon)`
-  ${iconStyle}
+  ${iconStyle};
+  color: ${props => props.theme.palette.primary.main};
 `;
 
 export const BusinessIconStyle = styled(BusinessIcon)`
-  ${iconStyle}
+  ${iconStyle};
+  color: ${props => props.theme.palette.primary.main};
 `;
 
 export const MailIconStyle = styled(MailIcon)`
-  ${iconStyle}
+  ${iconStyle};
+  color: ${props => props.theme.palette.primary.main};
 `;
 
-export const PhoneIphoneIconStyle = styled(PhoneIphoneIcon)`${iconStyle}`;
+export const PhoneIphoneIconStyle = styled(PhoneIphoneIcon)`${iconStyle};
+color: ${props => props.theme.palette.primary.main};`;
 
-export const LoginInput = styled.input`
+export const LoginInput = styled(Input)`
   border: none;
-  border-bottom: 2px solid #d1d1d4;
-  background: none;
-  padding: 10px 0 5px 24px;
+  background: transparent;
+  padding: 3px 0 0 24px;
   font-weight: 700;
   width: 75%;
-  transition: 0.2s;
-  &:hover {
-    outline: none;
-    border-bottom-color: #53e3a6;
-  }
+  transition: 0.2s
 `;
 
 export const LoginSubmit = styled.button`
@@ -249,19 +250,19 @@ export const LoginSubmit = styled.button`
   margin-top: 30px;
   padding: 16px 20px;
   border-radius: 26px;
-  border: 1px solid #53e3a6;
+  border: ${props => `1px solid ${props.theme.palette.primary.main}`};
   text-transform: uppercase;
   font-weight: 700;
   display: flex;
   align-items: center;
   width: 100%;
-  color: #53e3a6;
-  box-shadow: 0px 2px 2px #53e3a6;
+  color: ${props => props.theme.palette.primary.main};
+  box-shadow:  ${props => `0px 2px 2px ${props.theme.palette.primary.main}`};
   cursor: pointer;
   transition: 0.2s;
   &:hover {
     color: #fff;
-    background: #5856d6;
+    background: ${props => props.theme.palette.secondary.main};
     outline: none;
     box-shadow: none;
     border: none;
@@ -298,3 +299,18 @@ export const LoginLink = styled(Signup)`
 export const IconStyle = {
   vertivalAlign: "middle",
 };
+
+// verify page
+
+export const VerifyInput = styled(Input)`
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  border-radius: 5px;
+  border: none;
+  color: #FFF;
+  padding: 10px;
+  font-size:20px;
+  text-align: center;
+  background: ${props => props.theme.palette.primary.main}
+`

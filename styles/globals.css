@@ -24,7 +24,11 @@ h2 {
 }
 
 input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=date], textarea, select {
-  background-color: #ffffff;
+  background-color: transparent;
   color: #555555;
   border-color: #dce0e0;
+}
+
+input:focus-visible{
+  outline: none !important;
 }

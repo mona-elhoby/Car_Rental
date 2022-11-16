@@ -47,9 +47,9 @@ transition: border-color linear 0.3s;
 
 export const CoverSearchSelect = styled.select`
   ${CoverInputSearch};
-  //   -webkit-appearance: none;
-  //   -moz-appearance: none;
-  //   appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 `;
 
 export const InputSearch = styled.input`
@@ -61,3 +61,13 @@ export const InputSearch = styled.input`
     background-color: ${props => props.theme.palette.secondary.main};
   }
 `;
+
+export const SpanIcon = {
+  opacity: '0.5',
+    lineHeight: 1,
+    color: '#000',
+    position: 'absolute',
+    top: '12px',
+    right: '15px',
+    fontSize: '16px'
+}
