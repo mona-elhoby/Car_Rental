@@ -5,8 +5,8 @@ import { useTheme } from '@mui/styles';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 
 import { CoverWrapper, Overlay, CoverHeader, CoverSubtitle, CoverSearchSelect, InputSearch, SpanIcon } from "./style";
-import styles from "../../styles/Home.module.css";
-import Layout from '../../layout/layout'
+import styles from "../../../styles/Home.module.css";
+import Layout from '../../../layout/layout'
 
 
 const Cover = () => {

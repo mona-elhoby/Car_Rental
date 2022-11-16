@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import Cover from '../components/cover'
+import Cover from '../components/home/cover'
 
 
 export default function Home() {
