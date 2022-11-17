@@ -8,7 +8,7 @@ const Layout = (props) => {
     const mediumMatches = useMediaQuery("(min-width: 991px)");
 
   const Customize = styled(Container)`
-    padding: ${mediumMatches ? "0 80px !important" : "0 24px !important"};
+    padding: ${mediumMatches ? "0 85px !important" : "0 24px !important"};
   `;
   return (
     <Customize

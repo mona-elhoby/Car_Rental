@@ -46,7 +46,8 @@ function Navbar(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  
+  const navStyle = { color: "#fff", textTransform: 'capitalize' }
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
@@ -56,7 +57,7 @@ function Navbar(props) {
       <List>
         {navItems.map((item, i) => (
           <ListItem key={i} disablePadding>
-            <ListItemButton sx={{ textAlign: "center", textTransform: 'capitalize' }}>
+            <ListItemButton sx={navStyle}>
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
@@ -99,7 +100,7 @@ function Navbar(props) {
             </IconButton>
             <Box sx={{ display: { xs: "none", md: "block" } }}>
               {navItems.map((item, i) => (
-                <Button key={i} sx={{ color: "#fff", textTransform: 'capitalize' }}>
+                <Button key={i} sx={navStyle}>
                   {item}
                 </Button>
               ))}

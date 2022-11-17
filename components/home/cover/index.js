@@ -33,7 +33,7 @@ const Cover = () => {
                     <option value="MINI">MINI</option>
                     <option value="Porsche">Porsche</option>
                   </CoverSearchSelect>
-                  <Image src={require('../../assets/down-arrow.png')} alt="down-arrow-image" height={15} width={15} style={SpanIcon}/>
+                  <Image src={require('../../../assets/down-arrow.png')} alt="down-arrow-image" height={15} width={15} style={SpanIcon}/>
                 </div>
               </Grid>
               <Grid item xs={12} sm={3}>
@@ -44,7 +44,7 @@ const Cover = () => {
                     <option value="Sedan">Sedan</option>
                     <option value="SUV">SUV</option>
                   </CoverSearchSelect>
-                  <Image src={require('../../assets/down-arrow.png')} alt="down-arrow-image" height={15} width={15} style={SpanIcon}/>
+                  <Image src={require('../../../assets/down-arrow.png')} alt="down-arrow-image" height={15} width={15} style={SpanIcon}/>
                 </div>
               </Grid>
               <Grid item xs={12} sm={3}>

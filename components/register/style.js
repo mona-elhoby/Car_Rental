@@ -10,7 +10,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export const Wrapper = styled.div`
   background: #a2a2b1;
-  background: ${props => `linear-gradient(to bottom right, #a2a2b1 0%, ${props.theme.palette.primary.main} 100%)`};
+  background: ${props => `linear-gradient(to bottom right, #a2a2b1 0%, ${props.theme.palette.secondary.main} 100%)`};
   position: absolute;
   left: 0;
   width: 100%;
@@ -26,11 +26,11 @@ export const Container = styled.div`
 `;
 
 export const Screen = styled.div`
-  background: ${props => `linear-gradient(90deg, #a2a2b1, ${props.theme.palette.primary.main})`};
+  background: ${props => `linear-gradient(90deg, #a2a2b1, ${props.theme.palette.secondary.main})`};
   position: relative;
   height: 600px;
   width: 360px;
-  box-shadow: ${props => `0px 0px 24px ${props.theme.palette.primary.main}`};
+  box-shadow: ${props => `0px 0px 24px ${props.theme.palette.secondary.main}`};
 `;
 
 export const ScreenContent = styled.div`
@@ -168,7 +168,7 @@ export const ScreenBkgShap1 = styled(ScreenBkgShap)`
 export const ScreenBkgShap2 = styled(ScreenBkgShap)`
   height: 220px;
   width: 220px;
-  background: ${props => props.theme.palette.primary.main};
+  background: ${props => props.theme.palette.secondary.main};
   top: -172px;
   right: 0;
   border-radius: 32px;
@@ -177,7 +177,7 @@ export const ScreenBkgShap2 = styled(ScreenBkgShap)`
 export const ScreenBkgShap3 = styled(ScreenBkgShap)`
   height: 540px;
   width: 190px;
-  background: ${props => `linear-gradient(270deg, #a2a2b1, ${props.theme.palette.primary.main})`};
+  background: ${props => `linear-gradient(270deg, #a2a2b1, ${props.theme.palette.secondary.main})`};
   top: -24px;
   right: 0;
   border-radius: 32px;
@@ -186,7 +186,7 @@ export const ScreenBkgShap3 = styled(ScreenBkgShap)`
 export const ScreenBkgShap4 = styled(ScreenBkgShap)`
   height: 400px;
   width: 200px;
-  background: ${props => props.theme.palette.primary.main};
+  background: ${props => props.theme.palette.secondary.main};
   top: 420px;
   right: 50px;
   border-radius: 60px;
@@ -199,8 +199,9 @@ export const Login = styled.div`
 `;
 
 export const LoginFeild = styled.div`
-  padding: 20px 0px;
+  padding: 20px 0 0px;
   position: relative;
+  margin-bottom: 10px;
   &::focus-visible {
     outline: none !important;
   }
@@ -209,31 +210,31 @@ export const LoginFeild = styled.div`
 const iconStyle = `
   position: absolute;
   top: 25px;
-  color: ${props => props.theme.palette.primary.main};
+  color: ${props => props.theme.palette.secondary.main};
   width: .8em !important`;
 
 export const PersonIconStyle = styled(PersonIcon)`
   ${iconStyle};
-  color: ${props => props.theme.palette.primary.main};
+  color: ${props => props.theme.palette.secondary.main};
 `;
 
 export const LockIconStyle = styled(LockIcon)`
   ${iconStyle};
-  color: ${props => props.theme.palette.primary.main};
+  color: ${props => props.theme.palette.secondary.main};
 `;
 
 export const BusinessIconStyle = styled(BusinessIcon)`
   ${iconStyle};
-  color: ${props => props.theme.palette.primary.main};
+  color: ${props => props.theme.palette.secondary.main};
 `;
 
 export const MailIconStyle = styled(MailIcon)`
   ${iconStyle};
-  color: ${props => props.theme.palette.primary.main};
+  color: ${props => props.theme.palette.secondary.main};
 `;
 
 export const PhoneIphoneIconStyle = styled(PhoneIphoneIcon)`${iconStyle};
-color: ${props => props.theme.palette.primary.main};`;
+color: ${props => props.theme.palette.secondary.main};`;
 
 export const LoginInput = styled(Input)`
   border: none;
@@ -250,19 +251,19 @@ export const LoginSubmit = styled.button`
   margin-top: 30px;
   padding: 16px 20px;
   border-radius: 26px;
-  border: ${props => `1px solid ${props.theme.palette.primary.main}`};
+  border: ${props => `1px solid ${props.theme.palette.secondary.main}`};
   text-transform: uppercase;
   font-weight: 700;
   display: flex;
   align-items: center;
   width: 100%;
-  color: ${props => props.theme.palette.primary.main};
-  box-shadow:  ${props => `0px 2px 2px ${props.theme.palette.primary.main}`};
+  color: ${props => props.theme.palette.secondary.main};
+  box-shadow:  ${props => `0px 2px 2px ${props.theme.palette.secondary.main}`};
   cursor: pointer;
   transition: 0.2s;
   &:hover {
     color: #fff;
-    background: ${props => props.theme.palette.secondary.main};
+    background: ${props => props.theme.palette.primary.main};
     outline: none;
     box-shadow: none;
     border: none;
@@ -312,5 +313,5 @@ export const VerifyInput = styled(Input)`
   padding: 10px;
   font-size:20px;
   text-align: center;
-  background: ${props => props.theme.palette.primary.main}
+  background: ${props => props.theme.palette.secondary.main}
 `

@@ -77,6 +77,7 @@ export const SubmitFormFooter = styled.input`
   width: 100%;
   padding: 10px;
   border: none;
+  background: '#FFF';
   text-align: center;
 `;
 

@@ -12,6 +12,9 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
+  const [fNameValidate, setFNameValidate] = useState(false)
+  const [lNameValidate, setLNameValidate] = useState(false)
+  const [phoneValidate, setPhoneValidate] = useState(false)
 
   return (
     <Form
@@ -30,7 +33,17 @@ const Signup = () => {
       handleChangeCompany={useCallback((e) => setCompany(e.target.value), [])}
       email={email}
       handleChangeEmail={useCallback((e) => setEmail(e.target.value), [])}
+      fNameValid={fNameValidate}
+      lNameValid={lNameValidate}
+      phoneValid={phoneValidate}
       handleSignupForm={(e) => {
+        if(!fNameValidate){
+          setFNameValidate(true)
+        }else if(!lNameValidate){
+          setLNameValidate(true)
+        }else if(!phoneValidate){
+          setPhoneValidate(true)
+        }
         console.log(
           "email: ",
           email,

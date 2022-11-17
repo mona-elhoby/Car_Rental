@@ -4,9 +4,6 @@ import { Provider } from "react-redux";
 import Head from "next/head";
 
 import { customTheme } from "../layout/theme";
-import TopBar from "../features/topBar";
-import Navbar from "../features/navbar";
-import Footer from "../features/footer";
 import "../styles/globals.css";
 import {store} from "../store/index";
 
@@ -26,10 +23,7 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
       <Provider store={store}>
-        <TopBar />
-        <Navbar />
         <Component {...pageProps} />
-        <Footer />
       </Provider>
     </ThemeProvider>
   );
