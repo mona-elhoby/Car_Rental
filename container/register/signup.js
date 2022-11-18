@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { signup } from "../../store/reducer/auth";
 import Form from "../../components/register/signUpForm";
+import {countrySlice} from '../../store/reducer/profile'
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -10,11 +11,12 @@ const Signup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
+  const [phoneKey, setPhoneKey] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
-  const [fNameValidate, setFNameValidate] = useState(false)
-  const [lNameValidate, setLNameValidate] = useState(false)
-  const [phoneValidate, setPhoneValidate] = useState(false)
+  const [fNameValidate, setFNameValidate] = useState(false);
+  const [lNameValidate, setLNameValidate] = useState(false);
+  const [phoneValidate, setPhoneValidate] = useState(false);
 
   return (
     <Form
@@ -37,12 +39,14 @@ const Signup = () => {
       lNameValid={lNameValidate}
       phoneValid={phoneValidate}
       handleSignupForm={(e) => {
-        if(!fNameValidate){
-          setFNameValidate(true)
-        }else if(!lNameValidate){
-          setLNameValidate(true)
-        }else if(!phoneValidate){
-          setPhoneValidate(true)
+        if (!fNameValidate) {
+          setFNameValidate(true);
+        }
+        if (!lNameValidate) {
+          setLNameValidate(true);
+        }
+        if (!phoneValidate) {
+          setPhoneValidate(true);
         }
         console.log(
           "email: ",
@@ -61,15 +65,15 @@ const Signup = () => {
         dispatch(
           signup({
             firstName: firstName ? firstName : undefined,
-            lastName: lastName ? lastName :undefined,
+            lastName: lastName ? lastName : undefined,
             email: email ? email : undefined,
             phone: phoneNumber ? phoneNumber : undefined,
-            password: password ? password :undefined,
+            password: password ? password : undefined,
             company: {
-              name: company ? company :undefined,
+              name: company ? company : undefined,
             },
           })
-        ).then(res => console.log(res.payload))
+        ).then((res) => console.log(res.payload));
       }}
     />
   );

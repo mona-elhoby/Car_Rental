@@ -10,7 +10,7 @@ export const customTheme = {
     forth: '#53e3a6',
     type: "dark",
   },
-  direction: 'rtl',
+  // direction: 'rtl',
   typography: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     fontSize: 14,

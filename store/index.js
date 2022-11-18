@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import {signup} from '../store/reducer/auth'
+import authSlice from './reducer/auth'
+import countrySlice from './reducer/constant/country'
 
 export const store = configureStore({
 	reducer: {
-		signup,
+		auth: authSlice,
+		country: countrySlice,
     },
 	devTools: true,
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false })

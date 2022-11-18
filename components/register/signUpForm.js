@@ -1,7 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import { useTheme } from "@mui/styles";
-import FormHelperText from '@mui/material/FormHelperText';
+import FormHelperText from "@mui/material/FormHelperText";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import NativeSelect from '@mui/material/NativeSelect';
 
 import FormShap from "./form-shap";
 import {
@@ -38,7 +43,13 @@ const Form = (props) => {
               required
               error={props.fNameValid ? true : false}
             />
-            {props.fNameValid ? (<FormHelperText sx={{marginTop: '0 !important', marginBottom: '-15px'}}>check firstName</FormHelperText>) : null}
+            {props.fNameValid ? (
+              <FormHelperText
+                sx={{ marginTop: "0 !important", marginBottom: "-15px" }}
+              >
+                check firstName
+              </FormHelperText>
+            ) : null}
           </LoginFeild>
           <LoginFeild>
             <PersonIconStyle sx={IconStyle} theme={theme} />
@@ -50,7 +61,13 @@ const Form = (props) => {
               required
               error={props.lNameValid ? true : false}
             />
-            {props.lNameValid ? (<FormHelperText sx={{marginTop: '0 !important', marginBottom: '-15px'}}>check lastName</FormHelperText>) : null}
+            {props.lNameValid ? (
+              <FormHelperText
+                sx={{ marginTop: "0 !important", marginBottom: "-15px" }}
+              >
+                check lastName
+              </FormHelperText>
+            ) : null}
           </LoginFeild>
           <LoginFeild>
             <MailIconStyle sx={IconStyle} theme={theme} />
@@ -63,16 +80,37 @@ const Form = (props) => {
           </LoginFeild>
           <LoginFeild>
             <PhoneIphoneIconStyle sx={IconStyle} theme={theme} />
+            <div style={{display: 'flex'}}>
+            <FormControl sx={{ m: 1, width: 25, display: 'inline-block' }} size="small">
+              <NativeSelect
+                value={props.phoneKey}
+                onChange={props.handleChangePhoneKey}
+              >
+                {
+                  props.countries?.map((ele,i) => (
+                    <MenuItem key={ele.id} value={ele.phone}>{ele.phone}</MenuItem>
+                  ))
+                }
+              </NativeSelect>
+            </FormControl>
             <LoginInput
               type="text"
               placeholder="Phone"
               value={props.phone}
               onChange={props.handleChangePhone}
               required
-              maxlength="10"
+              maxLength="10"
               error={props.phoneValid ? true : false}
+              sx={{display: 'inline-block'}}
             />
-            {props.phoneValid ? (<FormHelperText sx={{marginTop: '0 !important', marginBottom: '-15px'}}>check Phone Number</FormHelperText>) : null}
+            {props.phoneValid ? (
+              <FormHelperText
+                sx={{ marginTop: "0 !important", marginBottom: "-15px" }}
+              >
+                check Phone Number
+              </FormHelperText>
+            ) : null}
+            </div>
           </LoginFeild>
           <LoginFeild>
             <BusinessIconStyle sx={IconStyle} theme={theme} />
@@ -90,7 +128,7 @@ const Form = (props) => {
               placeholder="Password"
               value={props.password}
               onChange={props.handleChangePassword}
-              maxlength="6"
+              maxLength="6"
             />
           </LoginFeild>
           <LoginSubmit onClick={props.handleSignupForm}>

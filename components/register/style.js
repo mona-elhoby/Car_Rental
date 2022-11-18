@@ -242,7 +242,8 @@ export const LoginInput = styled(Input)`
   padding: 3px 0 0 24px;
   font-weight: 700;
   width: 75%;
-  transition: 0.2s
+  transition: 0.2s;
+
 `;
 
 export const LoginSubmit = styled.button`
@@ -313,5 +314,8 @@ export const VerifyInput = styled(Input)`
   padding: 10px;
   font-size:20px;
   text-align: center;
-  background: ${props => props.theme.palette.secondary.main}
+  background: ${props => props.theme.palette.secondary.main};
+  input{
+    display: inline-block !important
+  }
 `

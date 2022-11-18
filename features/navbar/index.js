@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -19,34 +19,45 @@ import Image from "next/image";
 import Layout from "../../layout/layout";
 
 const drawerWidth = 240;
-const navItems = ["Home", "cars", "About", "booking", "cars", "Contact"];
+const navItems = ["Home", "cars", "About", "booking", "blog", "Profile"];
 
 function Navbar(props) {
   const { window } = props;
+  const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [background, setBackground] = useState('rgba(0, 0, 0, 0.3)')
+  const [background, setBackground] = useState("rgba(0, 0, 0, 0.3)");
   const [top, setTop] = useState(44);
+  const [active, setActive] = useState(0)
 
   useEffect(() => {
-    document.addEventListener("scroll", handleScroll); 
+    document.addEventListener("scroll", handleScroll);
     return () => document?.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleScroll = () => {
     if (global.window.scrollY == 0) {
-      setTop(44)
-      setBackground('rgba(0, 0, 0, 0.3)')
-    }else{
-        setTop(0)
-        setBackground('rgba(0, 0, 0, 1)')
+      setTop(44);
+      setBackground("rgba(0, 0, 0, 0.3)");
+    } else {
+      setTop(0);
+      setBackground("rgba(0, 0, 0, 1)");
     }
   };
-  
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  const navStyle = { color: "#fff", textTransform: 'capitalize' }
+  const navStyle = {
+    color: "#fff",
+    textTransform: "capitalize",
+    "&:hover": {
+      color: theme.palette.primary.main,
+    },
+  };
+  const navActiveStyle = {
+    color: theme.palette.primary.main,
+    textTransform: "capitalize",
+  };
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -73,10 +84,10 @@ function Navbar(props) {
     <Box>
       <AppBar
         component="nav"
-        sx={{ background: background, top: {xs: 0,sm: `${top}px`} }}
+        sx={{ background: background, top: { xs: 0, sm: `${top}px` } }}
       >
         <Layout>
-          <Toolbar sx={{padding: '0 !important'}}>
+          <Toolbar sx={{ padding: "0 !important" }}>
             <Typography
               variant="h6"
               component="div"
@@ -100,7 +111,7 @@ function Navbar(props) {
             </IconButton>
             <Box sx={{ display: { xs: "none", md: "block" } }}>
               {navItems.map((item, i) => (
-                <Button key={i} sx={navStyle}>
+                <Button key={i} sx={active == i ? navActiveStyle : navStyle} active={i} onClick={() => setActive(i)} >
                   {item}
                 </Button>
               ))}

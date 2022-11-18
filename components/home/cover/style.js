@@ -68,6 +68,6 @@ export const SpanIcon = {
     color: '#000',
     position: 'absolute',
     top: '12px',
-    right: '15px',
+    right: '20px',
     fontSize: '16px'
 }
