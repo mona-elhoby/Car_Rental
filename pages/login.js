@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-import Form from "../components/register/loginform";
+import Form from "../container/register/login";
 import {Background} from '../components/register/form-bkg'
 import {Wrapper, Container} from '../components/register/style'
 

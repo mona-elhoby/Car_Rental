@@ -43,3 +43,16 @@ input:focus-visible,
 select:focus-visible {
   outline: none !important;
 }
+
+.PhoneInputCountryIconImg{
+  width: 20px;
+  height: 20px
+}
+
+.PhoneInputInput {
+  border: none;
+  padding: 0 0 5px;
+  border-bottom: 1px solid #a2a2b1 !important;
+  width: 45px;
+}
+

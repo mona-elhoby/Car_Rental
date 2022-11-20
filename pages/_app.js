@@ -3,9 +3,11 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Provider } from "react-redux";
 import Head from "next/head";
 
+import ErrorBoundary from "../services/errorBoundery";
 import { customTheme } from "../layout/theme";
-import "../styles/globals.css";
 import {store} from "../store/index";
+import "../styles/globals.css";
+import '../store/inceptors'
 
 const theme = createTheme(customTheme);
 function MyApp({ Component, pageProps }) {
@@ -23,7 +25,9 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
       <Provider store={store}>
+      <ErrorBoundary>
         <Component {...pageProps} />
+      </ErrorBoundary>
       </Provider>
     </ThemeProvider>
   );

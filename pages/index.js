@@ -5,7 +5,7 @@ import Layout from "../layout/pageLayout";
 import SectionContainer from "../components/home/second_section";
 import ThirdSection from '../components/home/third_section';
 import ForthSection from '../components/home/fourth_section';
-import FifthSection from '../components/home/fifthSection'
+import FifthSection from '../components/home/fifthSection';
 
 export default function Home() {
   return (

@@ -2,11 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { useTheme } from "@mui/styles";
 import FormHelperText from "@mui/material/FormHelperText";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import NativeSelect from '@mui/material/NativeSelect';
+import 'react-phone-number-input/style.css'
+import PhoneInput from "react-phone-number-input";
 
 import FormShap from "./form-shap";
 import {
@@ -47,7 +44,7 @@ const Form = (props) => {
               <FormHelperText
                 sx={{ marginTop: "0 !important", marginBottom: "-15px" }}
               >
-                check firstName
+                check your firstName
               </FormHelperText>
             ) : null}
           </LoginFeild>
@@ -65,7 +62,7 @@ const Form = (props) => {
               <FormHelperText
                 sx={{ marginTop: "0 !important", marginBottom: "-15px" }}
               >
-                check lastName
+                check your lastName
               </FormHelperText>
             ) : null}
           </LoginFeild>
@@ -76,33 +73,43 @@ const Form = (props) => {
               placeholder="Email"
               value={props.email}
               onChange={props.handleChangeEmail}
+              error={props.emailValid ? true : false}
             />
+            {props.emailValid ? (
+              <FormHelperText
+                sx={{ marginTop: "0 !important", marginBottom: "-15px" }}
+              >
+                check your email
+              </FormHelperText>
+            ) : null}
           </LoginFeild>
           <LoginFeild>
-            <PhoneIphoneIconStyle sx={IconStyle} theme={theme} />
-            <div style={{display: 'flex'}}>
-            <FormControl sx={{ m: 1, width: 25, display: 'inline-block' }} size="small">
-              <NativeSelect
+            {/* <PhoneIphoneIconStyle sx={IconStyle} theme={theme} /> */}
+            <div style={{ display: "flex", alignItems: "flex-end" }}>
+              <PhoneInput
+                international
+                countryCallingCodeEditable={false}
+                defaultCountry="RU"
+                placeholder="key"
                 value={props.phoneKey}
-                onChange={props.handleChangePhoneKey}
-              >
-                {
-                  props.countries?.map((ele,i) => (
-                    <MenuItem key={ele.id} value={ele.phone}>{ele.phone}</MenuItem>
-                  ))
-                }
-              </NativeSelect>
-            </FormControl>
-            <LoginInput
-              type="text"
-              placeholder="Phone"
-              value={props.phone}
-              onChange={props.handleChangePhone}
-              required
-              maxLength="10"
-              error={props.phoneValid ? true : false}
-              sx={{display: 'inline-block'}}
-            />
+                onChange={props.setPhoneKey}
+                maxLength={props.phoneKey?.length}
+              />
+              <LoginInput
+                type="tel"
+                placeholder="Phone"
+                value={props.phone}
+                onChange={props.handleChangePhone}
+                required
+                maxLength="14"
+                error={props.phoneValid ? true : false}
+                sx={{
+                  display: "inline-block",
+                  width: "calc(75% - 70px) !important",
+                  padding: '3px 0 0 10px !important'
+                }}
+              />
+            </div>
             {props.phoneValid ? (
               <FormHelperText
                 sx={{ marginTop: "0 !important", marginBottom: "-15px" }}
@@ -110,7 +117,6 @@ const Form = (props) => {
                 check Phone Number
               </FormHelperText>
             ) : null}
-            </div>
           </LoginFeild>
           <LoginFeild>
             <BusinessIconStyle sx={IconStyle} theme={theme} />
@@ -128,8 +134,16 @@ const Form = (props) => {
               placeholder="Password"
               value={props.password}
               onChange={props.handleChangePassword}
-              maxLength="6"
+              maxLength="8"
+              error={props.passwordValid ? true : false}
             />
+            {props.passwordValid ? (
+              <FormHelperText
+                sx={{ marginTop: "0 !important", marginBottom: "-15px" }}
+              >
+                check your password
+              </FormHelperText>
+            ) : null}
           </LoginFeild>
           <LoginSubmit onClick={props.handleSignupForm}>
             <span>Sign Up</span>

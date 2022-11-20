@@ -3,12 +3,9 @@ import axios from 'axios';
 
 import { api_url, config } from '../../config';
 
-export const getCountry = createAsyncThunk('country/get', async (userInfo, thunkAPI) => {
-	console.log(userInfo)
+export const getCountry = createAsyncThunk('country/get', async (_, thunkAPI) => {
 		const res = await axios.get(`${api_url}/country?total=true`,config);
-		// localStorage.setItem('userInfo', JSON.stringify(res.data));
-        console.log("res: ", res)
-		return { res, userInfo };
+		return res;
 }
 );
 
@@ -17,7 +14,9 @@ const countrySlice = createSlice({
     name: 'country',
 	initialState: { allCountries: null },
     extraReducers: {
-
+        [getCountry.fulfilled]: (state, action) => {
+            state.allCountries = action.payload.data
+        }
     }
 })
 

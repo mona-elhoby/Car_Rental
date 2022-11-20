@@ -240,7 +240,6 @@ export const LoginInput = styled(Input)`
   border: none;
   background: transparent;
   padding: 3px 0 0 24px;
-  font-weight: 700;
   width: 75%;
   transition: 0.2s;
 
@@ -281,7 +280,7 @@ export const Signup = styled.div`
   height: 140px;
   width: 160px;
   text-align: center;
-  bottom: -15px;
+  bottom: -14px;
   right: 0px;
   color: #fff;
 `;

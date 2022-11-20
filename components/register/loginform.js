@@ -47,7 +47,7 @@ const Form = (props) => {
               required
               error={props.phoneValid ? true : false}
             />
-            {props.phoneValid ? (<FormHelperText sx={{marginTop: '0 !important'}}>check Phone Number / Email</FormHelperText>) : null}
+            {props.phoneValid ? (<FormHelperText sx={{marginTop: '0 !important'}}>check your Phone Number / Email</FormHelperText>) : null}
           </LoginFeild>
           <FormControl>
             <FormControlLabel
@@ -70,17 +70,26 @@ const Form = (props) => {
                   type="password"
                   placeholder="Password"
                   value={props.password}
-                  onChange={props.handleChangeEmail}
+                  maxLength="8"
+                  onChange={props.handleChangePassword}
                 />
+                {props.passwordValid ? (
+                  <FormHelperText
+                    sx={{ marginTop: "0 !important", marginBottom: "-15px" }}
+                  >
+                    check your password
+                  </FormHelperText>
+                ) : null}
               </LoginFeild>
             )
           }
-          <LoginSubmit>
+          {props.showCounter && (<div>{props.counter}</div>)}
+          <LoginSubmit onClick={props.handleLogin}>
             <span>Log In</span>
             <IconSubmit />
           </LoginSubmit>
         </Login>
-        <Signup onClick={props.handleLogin}>
+        <Signup>
           <NoAccount>have not account </NoAccount>
           <NoAccount>
             <Link href="/signup" style={{ color: "#FFF" }}>

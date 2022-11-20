@@ -1,17 +1,8 @@
 // inceptors request
 import React from 'react'
 import axios from 'axios';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-import { useDispatch } from 'react-redux';
 
 import { api_url } from './config';
-
-
-// for snack alert
-const Alert = React.forwardRef(function Alert(props, ref) {
-	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 // LocalStorageService
 const localStorageService = JSON.parse(localStorage.getItem('userInfo'));
@@ -31,11 +22,7 @@ axios.interceptors.request.use(
 		Promise.reject(error);
 	}
 );
-const handleCloseSnack= () => {
-	if (reason === 'clickaway') {
-		return;
-	}
-}
+
 // inceptors response
 axios.interceptors.response.use(
 	(response) => {
@@ -73,32 +60,9 @@ axios.interceptors.response.use(
 					}
 				});
 		}
-		console.log('error.response: ', error.response);
-		if(error.response.status == 404){
-			// console.log("not found")
-			// window.location.replace('/404')
-		}
-		if (error.res?.data?.code == '3034771') {
-			dispatch(setGlobalErrors())
-			console.log('kkkkkkkkkkkkkkk');
-			return (<Snackbar open={true} autoHideDuration={2000} onClose={handleCloseSnack}>
-				<Alert
-					onClose={handleCloseSnack}
-					severity={ 'error' }
-					sx={{ width: '100%' }}
-				>يوجد خطأ بالبيانات
-				</Alert>
-			</Snackbar>)
-		}
+		// console.log("error.response: ", error)
 		return error.response;
 	}
 );
 
-// handel error
-// axios.interceptors.response.use(
-//   res => res,
-//   err => {
-//     throw new Error(err.response.data.message);
-//   }
-// )
-// const err = await axios.get('http://example.com/notfound').catch(err => err);
+
