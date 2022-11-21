@@ -303,7 +303,7 @@ export const IconStyle = {
 
 // verify page
 
-export const VerifyInput = styled(Input)`
+export const VerifyInput = styled.input`
   width: 40px;
   height: 40px;
   margin-right: 5px;

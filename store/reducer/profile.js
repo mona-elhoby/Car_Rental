@@ -3,12 +3,9 @@ import axios from 'axios';
 
 import { api_url, config } from '../config';
 
-export const getProfile = createAsyncThunk('profile/get', async (userInfo, thunkAPI) => {
-	console.log(userInfo)
+export const getProfile = createAsyncThunk('profile/get', async (_, thunkAPI) => {
 		const res = await axios.get(`${api_url}/user/mine`,config);
-		// localStorage.setItem('userInfo', JSON.stringify(res.data));
-        console.log("res: ", res)
-		return { res, userInfo };
+		return res.data;
 }
 );
 

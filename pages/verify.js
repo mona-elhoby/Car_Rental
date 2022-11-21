@@ -4,15 +4,12 @@ import Link from "next/link";
 import {
   Screen,
   Login,
-  IconSubmit,
-  LoginSubmit,
   ScreenContent,
-  LoginFeild,
-  VerifyInput
 } from "../components/register/style";
 import FormShap from "../components/register/form-shap";
 import { Background } from "../components/register/form-bkg";
 import { Wrapper, Container } from "../components/register/style.js";
+import Verify from "../container/register/verify";
 
 const Form = () => {
     const handleChange = useCallback(e => {
@@ -26,15 +23,7 @@ const Form = () => {
         <Screen>
           <ScreenContent>
             <Login>
-            <LoginFeild>
-                {
-                    [...Array(6)].map((ele, i) => (<VerifyInput key={i} id={`ele${i}`} maxLength="1" onChange={handleChange}/>))
-                }
-            </LoginFeild>
-              <LoginSubmit>
-                <span>Verify</span>
-                <IconSubmit />
-              </LoginSubmit>
+            <Verify />
             </Login>
             <FormShap />
           </ScreenContent>

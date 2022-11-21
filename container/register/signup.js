@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useMemo, useEffect } from "react";
+import React, { useCallback, useState, } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {useRouter } from 'next/router'
 
@@ -97,7 +97,7 @@ const Signup = () => {
                 : undefined,
             })
           ).then((res) => {
-            // console.log(res?.payload);
+            console.log(res);
             if (res?.payload?.status == 201) {
               router.push('/login')
             }

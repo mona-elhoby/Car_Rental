@@ -50,7 +50,7 @@ export const ContactInfo = styled.div`
   font-size: 13px;
   float: left;
   line-height: 44px;
-  width: 60%;
+  width: ${props => props.mediumScreen ? '65%' : '60%' };
   color: #FFF
 `;
 

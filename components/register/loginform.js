@@ -72,6 +72,7 @@ const Form = (props) => {
                   value={props.password}
                   maxLength="8"
                   onChange={props.handleChangePassword}
+                  error={props.passwordValid ? true : false}
                 />
                 {props.passwordValid ? (
                   <FormHelperText
@@ -83,7 +84,7 @@ const Form = (props) => {
               </LoginFeild>
             )
           }
-          {props.showCounter && (<div>{props.counter}</div>)}
+          {props.showCounter && (<div id="counter">{props.counter}</div>)}
           <LoginSubmit onClick={props.handleLogin}>
             <span>Log In</span>
             <IconSubmit />
