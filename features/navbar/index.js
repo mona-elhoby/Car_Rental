@@ -33,7 +33,7 @@ const navItems = ["Home", "cars", "About", "booking", "blog"];
 
 function Navbar(props) {
   const { window } = props;
-  const router = useRouter()
+  const router = useRouter();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [background, setBackground] = useState("rgba(0, 0, 0, 0.3)");
@@ -79,11 +79,11 @@ function Navbar(props) {
     setAnchorEl(null);
   };
 
-  //logout 
+  //logout
   const handleLogout = () => {
-    localStorage.removeItem("auth")
-    router.push('/login')
-  }
+    localStorage.removeItem("auth");
+    router.push("/login");
+  };
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
@@ -94,25 +94,35 @@ function Navbar(props) {
         {navItems.map((item, i) => (
           <ListItem key={i} disablePadding>
             <ListItemButton sx={navStyle}>
-              <ListItemText primary={item} sx={{color: '#000'}}/>
+              <ListItemText primary={item} sx={{ color: "#000" }} />
             </ListItemButton>
           </ListItem>
-        ))}<MenuItem>
-        <Avatar sx={{height: '30px', width: '30px', marginRight: '5px'}}/> <Link href="/profile" style={{color: '#444'}}>Profile</Link>
-      </MenuItem>
-      <Divider />
-      <MenuItem>
-        <ListItemIcon>
-          <Settings fontSize="small" />
-        </ListItemIcon>
-        Settings
-      </MenuItem>
-      <MenuItem onClick={handleLogout}>
-        <ListItemIcon>
-          <Logout fontSize="small" />
-        </ListItemIcon>
-        Logout
-      </MenuItem>
+        ))}
+        <MenuItem>
+          <Avatar sx={{ height: "30px", width: "30px", marginRight: "5px" }} />{" "}
+          <Link
+            href="/profile"
+            style={{ color: "#444" }}
+            onClick={() => setActive(5)}
+          >
+            Profile
+          </Link>
+        </MenuItem>
+        <Divider />
+        <MenuItem>
+          <ListItemIcon>
+            <Settings fontSize="small" />
+          </ListItemIcon>
+          <Link href="/setting" style={{ color: "#444" }} onClick={() => setActive(5)}>
+            Settings
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={handleLogout}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Logout
+        </MenuItem>
       </List>
     </Box>
   );
@@ -154,7 +164,7 @@ function Navbar(props) {
                 <Button
                   key={i}
                   sx={active == i ? navActiveStyle : navStyle}
-                  active={i}
+                  active={active}
                   onClick={() => setActive(i)}
                 >
                   {item}
@@ -186,8 +196,8 @@ function Navbar(props) {
                   filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
                   mt: 1.5,
                   right: 102,
-                  left: 'auto !important',
-                  top: '90px !important',
+                  left: "auto !important",
+                  top: "90px !important",
                   "& .MuiAvatar-root": {
                     width: 32,
                     height: 32,
@@ -212,14 +222,23 @@ function Navbar(props) {
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
               <MenuItem>
-                <Avatar /> <Link href="/profile" style={{color: '#444'}}>Profile</Link>
+                <Avatar />{" "}
+                <Link
+                  href="/profile"
+                  style={{ color: "#444" }}
+                  onClick={() => setActive(5)}
+                >
+                  Profile
+                </Link>
               </MenuItem>
               <Divider />
               <MenuItem>
                 <ListItemIcon>
                   <Settings fontSize="small" />
                 </ListItemIcon>
-                Settings
+                <Link href="/setting" style={{ color: "#444" }} onClick={() => setActive(5)}>
+                  Settings
+                </Link>
               </MenuItem>
               <MenuItem onClick={handleLogout}>
                 <ListItemIcon>
