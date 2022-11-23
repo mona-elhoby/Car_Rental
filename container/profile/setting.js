@@ -7,7 +7,11 @@ import Link from "next/link";
 
 import styles from "../../styles/signature.module.css";
 import SettingForm from "../../components/profile/setting";
-import { getProfile, updateProfile } from "../../store/reducer/profile";
+import {
+  getProfile,
+  updateProfile,
+  updateProfileFiles,
+} from "../../store/reducer/profile";
 import { SettingBtn, SettingContainer } from "../../components/profile/style";
 import { getCountry } from "../../store/reducer/constant/country";
 
@@ -23,7 +27,8 @@ class Signature extends Component {
     nationality: "",
     gender: "",
     countries: null,
-    validation: false
+    validation: false,
+    attachedFile: null
   };
   sigPad = {};
   clear = () => {
@@ -33,6 +38,9 @@ class Signature extends Component {
     this.setState({
       trimmedDataURL: this.sigPad.getTrimmedCanvas().toDataURL("image/png"),
     });
+    this.props
+      .updateProfileFiles(this.sigPad.getTrimmedCanvas())
+      .then((res) => console.log(res));
   };
   //get nationalites list and user info
   componentDidMount() {
@@ -64,19 +72,27 @@ class Signature extends Component {
           lastName: this.state.lastName,
           gender: this.state.gender,
           nationality: this.state.nationality,
-          phone: this.state.phoneKey.includes('+') ?this.state.phoneKey : '+' + this.state.phoneKey + "" + this.state.phone,
+          phone: this.state.phoneKey.includes("+")
+            ? this.state.phoneKey
+            : "+" + this.state.phoneKey + "" + this.state.phone,
           email: this.state.email,
         })
         .then((res) => {
           console.log(res.payload);
           if (res.payload.code == "0625") {
-            this.setState({validation: true})
-          }else if(res.payload == 'OK'){
-            this.props.router.push('/profile')
+            this.setState({ validation: true });
+          } else if (res.payload == "OK") {
+            this.props.router.push("/profile");
           }
         });
     };
 
+    const handleChangeAttached = e => {
+        this.props
+    .updateProfileFiles(e.target.files[0])
+    .then((res) => console.log(res));
+}
+console.log(this.state.attachedFile)
     return (
       <SettingContainer>
         <SettingForm
@@ -102,6 +118,8 @@ class Signature extends Component {
           handleChangeGender={(e) => this.setState({ gender: e.target.value })}
           nationalites={this.state.countries}
           phoneValid={this.state.validation}
+          attachedFile={this.state.attachedFile}
+          handleChangeAttached={handleChangeAttached}
         />
 
         <div className={styles.container}>
@@ -144,6 +162,7 @@ const mapDispatchToProps = (dispatch) => {
     getCountry: () => dispatch(getCountry()),
     getProfile: () => dispatch(getProfile()),
     updateProfile: (data) => dispatch(updateProfile(data)),
+    updateProfileFiles: (data) => dispatch(updateProfileFiles(data)),
   };
 };
 export default withRouter(connect(null, mapDispatchToProps)(Signature));

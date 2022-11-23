@@ -29,7 +29,7 @@ const SettingForm = (props) => {
           sx={{ width: 168, height: 168, margin: "auto auto 20px" }}
           //   img={}
         />
-        <input type="file" />
+        <input type="file" onChange={props.handleChangeAttached} value={props.attachedFile}/>
       </AvaterContainer>
       <TextField
         id="standard-basic"
