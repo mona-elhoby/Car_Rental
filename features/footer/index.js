@@ -52,6 +52,7 @@ const Footer = () => {
                   alt=""
                   width="175"
                   height="24"
+                  // priority={true}
                 />
               </Content>
             </div>

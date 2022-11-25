@@ -87,7 +87,7 @@ function Navbar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        <Image src={require("../../assets/logo.png")} alt="logo" />
+        <Image src={require("../../assets/logo.png")} alt="logo" priority={true}/>
       </Typography>
       <Divider />
       <List>

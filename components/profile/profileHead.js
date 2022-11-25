@@ -18,7 +18,7 @@ const ProfileHead = (props) => {
         <Avatar
           alt="avatar"
           sx={{ width: 168, height: 168 }}
-          //   img={}
+          img={props.avatar ? props.avatar : null}
         />
       </Grid>
       <Grid item md={8} sm={8} xs={12}>
@@ -30,11 +30,23 @@ const ProfileHead = (props) => {
         ) : (
           <GppBadIcon />
         )}
+        {console.log(props.avatar)}
+        <img src={props.avatar} />
         <Button theme={theme}>
-          <Link href="/setting" style={{color: '#FFF'}}>update</Link>
+          <Link href="/setting" style={{ color: "#FFF" }}>
+            update
+          </Link>
         </Button>
         <Typography variant="caption" sx={nationality}>
           {props.user?.nationality.name}
+          <img
+            loading="lazy"
+            width="20"
+            src={`https://flagcdn.com/w20/${props.user?.nationality?.code.toLowerCase()}.png`}
+            srcSet={`https://flagcdn.com/w40/${props.user?.nationality?.code.toLowerCase()}.png 2x`}
+            alt=""
+            style={{ marginLeft: "5px" }}
+          />
         </Typography>
         <Item>
           <PhoneAndroidIcon

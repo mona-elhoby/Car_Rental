@@ -3,8 +3,8 @@ import axios from 'axios';
 
 import { api_url, config } from '../../config';
 
-export const getCountry = createAsyncThunk('country/get', async (_, thunkAPI) => {
-		const res = await axios.get(`${api_url}/country?total=true`,config);
+export const getCountry = createAsyncThunk('country/get', async (name, thunkAPI) => {
+		const res = await axios.get(`${api_url}/country?total=true&name=${name}`,config);
 		return res;
 }
 );

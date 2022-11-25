@@ -47,9 +47,7 @@ export const SettingContainer = styled.div`
 `;
 
 export const inputText = {
-  marginRight: "30px",
-  width: { sm: "calc((100% / 3) - 30px)", xs: "100%" },
-  marginTop: "20px",
+  margin: "40px 30px 40px 0",
 };
 
 export const ContainerDiv = styled.div`

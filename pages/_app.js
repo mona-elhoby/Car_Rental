@@ -5,12 +5,13 @@ import Head from "next/head";
 
 import ErrorBoundary from "../services/errorBoundery";
 import { customTheme } from "../layout/theme";
-import {store} from "../store/index";
+import {storeWrapper} from "../store/index";
 import "../styles/globals.css";
 import '../store/inceptors'
 
 const theme = createTheme(customTheme);
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, ...rest }) {
+  const { store, props } = storeWrapper.useWrappedStore(rest);
   return (
     <ThemeProvider theme={theme}>
       <Head>
@@ -20,8 +21,7 @@ function MyApp({ Component, pageProps }) {
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Work+Sans%3A100%2C200%2C300%2Cregular%2C500%2C600%2C700%2C800%2C900%7CPoppins%3A300%2Cregular%2C500%2C600%2C700%2C900&amp;subset"
-          type="text/css"
-          media="all"
+          
         />
       </Head>
       <Provider store={store}>

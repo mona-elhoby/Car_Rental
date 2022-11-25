@@ -1,17 +1,26 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { createWrapper } from 'next-redux-wrapper';
 
 import authSlice from './reducer/auth'
 import countrySlice from './reducer/constant/country'
 import profileSlice from './reducer/profile'
 
-export const store = configureStore({
-	reducer: {
-		auth: authSlice,
-		country: countrySlice,
-		profile: profileSlice
-    },
-	devTools: true,
-	middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false })
-});
+
+const makeStore = () => {
+	let store = configureStore({
+		reducer: {
+			auth: authSlice,
+			country: countrySlice,
+			profile: profileSlice
+		},
+		devTools: true,
+		middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false })
+	});
+  
+	return store;
+  }
+
+
+export const storeWrapper = createWrapper(makeStore)
 
  

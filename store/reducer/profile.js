@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { HYDRATE } from 'next-redux-wrapper';
 import axios from "axios";
 
 import { api_url, config } from "../config";
@@ -27,9 +28,9 @@ export const updateProfile = createAsyncThunk(
 export const updateProfileFiles = createAsyncThunk(
   "profile/uploadSignature",
   async (attachedFile, thunkAPI) => {
+    console.log("attachedFile: ", attachedFile);
     // const blob= dataURItoBlob(attachedFile)
     // attachedFile.toBlob(async (blob) => {
-      const formData = new FormData();
     //   const file = new File([blob], "filename.png", {
     //     type: blob.type,
     //     lastModified: new Date().getTime(),
@@ -38,18 +39,31 @@ export const updateProfileFiles = createAsyncThunk(
     //     name: "filename.png",
     //   });
     //   console.log(file);
-      formData.append("eSignature", attachedFile);
-      console.log(formData);
-      const res = await axios.post(`${api_url}/user/mine/file`, formData, {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      });
-      console.log(res);
-      return res;
+    const formData = new FormData();
+    formData.append("avatar", attachedFile, "image.png");
+    console.log(formData);
+    for (var key of formData.entries()) {
+      console.log("key: ", key[0] + ", " + key[1]);
+    }
+
+    const res = await axios.post(`${api_url}/user/mine/file`, formData, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    console.log(res);
+    return res;
     // }, "image/png");
   }
 );
+
+//get image
+export const getImage = createAsyncThunk("profile/image",
+async(id, thunkAPI) => {
+  const res = await axios.get(`${api_url}/static/${id}`)
+  return res
+})
+
 
 const profileSlice = createSlice({
   name: "profile",
@@ -58,8 +72,19 @@ const profileSlice = createSlice({
     isLoading: false,
     accessToken: null,
     refreshToken: null,
+    profile: null
   },
-  extraReducers: {},
+  extraReducers: {
+    [getProfile.fulfilled]: (state, action) => {
+      state.profile = action.payload
+    },
+    [HYDRATE]: (state, action) => {
+      return state = {
+          ...state,
+          ...action.payload
+      };
+  },
+  },
 });
 
 export default profileSlice.reducer;
