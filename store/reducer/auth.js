@@ -37,6 +37,7 @@ export const Login = createAsyncThunk(
         "Content-Type": "application/json",
       },
     });
+    // console.log(res)
     localStorage.setItem("auth", JSON.stringify(res.data.data));
 	console.log(res)
     return { res, userInfo };

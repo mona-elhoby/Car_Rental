@@ -18,7 +18,6 @@ import { LoginInput } from "../../components/register/style";
 import { inputText, ContainerDiv, AvaterContainer } from "./style";
 
 const SettingForm = (props) => {
-  const smallMatches = useMediaQuery("(max-width: 600px)");
 
   return (
     <div>
@@ -37,7 +36,7 @@ const SettingForm = (props) => {
       <Grid container>
         <Grid item sm={4} xs={12}>
           <TextField
-            id="standard-basic"
+            id="standard-basic4"
             label="First Name"
             variant="standard"
             sx={inputText}
@@ -57,7 +56,7 @@ const SettingForm = (props) => {
         </Grid>
         <Grid item sm={4} xs={12}>
           <TextField
-            id="standard-basic"
+            id="standard-basic3"
             label="Email"
             variant="standard"
             type="email"

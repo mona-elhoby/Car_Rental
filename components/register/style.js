@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/css";
-import Input from '@mui/material/Input';
+import {Input, Button} from '@mui/material';
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
 import MailIcon from "@mui/icons-material/Mail";
@@ -245,7 +245,7 @@ export const LoginInput = styled(Input)`
 
 `;
 
-export const LoginSubmit = styled.button`
+export const LoginSubmit = styled.p`
   background: #fff;
   font-size: 14px;
   margin-top: 30px;

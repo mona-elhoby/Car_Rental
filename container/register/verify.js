@@ -18,7 +18,8 @@ const Verify = () => {
             setState({...state, [e.target.id]: e.target.value})
     }, [state])
     //submit
-    const handleSubmit = useCallback(() => {
+    const handleSubmit = (e) => {
+      // e.preventDefault()
         console.log(Object.values(state).join(''))
         dispatch(
           Login({
@@ -28,11 +29,12 @@ const Verify = () => {
             code: Object.values(state).join(''),
           })
         ).then(res => {
+          console.log(res.payload)
             if(res.payload?.res?.status == 200){
                 router.push('/')
             }
         });
-    }, [state])
+    }
   return (
     <>
     <LoginFeild>{console.log("valueOTP: ", valueOTP)}

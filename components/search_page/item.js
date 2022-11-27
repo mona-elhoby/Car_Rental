@@ -4,8 +4,9 @@ import StarIcon from "@mui/icons-material/Star";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import AnalyticsOutlinedIcon from "@mui/icons-material/AnalyticsOutlined";
 import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
+import {useMediaQuery} from "@mui/material";
 
-import { DivContainer, ImgName, CarPrice, RatingText } from "./style";
+import { DivContainer, ImgName, CarPrice, RatingText, Strong, Smalltxt, ListContainer, ListItem, List } from "./style";
 import Layout from "../../layout/layout";
 
 const labels = {
@@ -28,6 +29,7 @@ function getLabelText(value) {
 const Item = (props) => {
   const [value, setValue] = React.useState(2);
   const [hover, setHover] = React.useState(-1);
+  const smallMatches = useMediaQuery("(max-width: 620px)");
 
   return (
     <Layout>
@@ -56,9 +58,10 @@ const Item = (props) => {
               emptyIcon={
                 <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
               }
+              sx={{fontSize: '14px'}}
             />
             {value !== null && (
-              <RatingText variant="subTitle" sx={{ ml: 2 }}>
+              <RatingText variant="subTitle" sx={{ ml: 2, marginTop: '-10px' }}>
                 {labels[hover !== -1 ? hover : value]}
               </RatingText>
             )}
@@ -66,33 +69,46 @@ const Item = (props) => {
           <DivContainer>
             <DivContainer>
               <div>
-                <p>
+                <div>
                   <PersonOutlineIcon />
-                </p>
-                <span>4</span>
+                </div>
+                <Smalltxt>4</Smalltxt>
               </div>
               <div>
-                <p>
+                <div>
                   <BusinessCenterOutlinedIcon />
-                </p>
-                <span>2</span>
+                </div>
+                <Smalltxt>2</Smalltxt>
               </div>
               <div>
-                <p>
+                <div>
                   <AnalyticsOutlinedIcon />
-                </p>
-                <span>Auto</span>
+                </div>
+                <Smalltxt>Auto</Smalltxt>
               </div>
             </DivContainer>
             <CarPrice>
-              <p>
+              <div>
                 <sup>$</sup>
-                <srtong>64</srtong>
-              </p>{" "}
-              <span>Per Day</span>
+                <Strong>64</Strong>
+              </div>{" "}
+              <Smalltxt>Per Day</Smalltxt>
             </CarPrice>
           </DivContainer>
         </div>
+        <ListContainer smallScreen={smallMatches}>
+          <List>
+            <ListItem>	&#10003; Audio input</ListItem>
+            <ListItem>	&#10003; Bluetooth</ListItem>
+            <ListItem>	&#10003; Heated seats</ListItem>
+            </List>
+            <List>
+              
+            <ListItem>	&#10003; All Wheel drive</ListItem>
+            <ListItem>	&#10003; USB input</ListItem>
+            <ListItem>	&#10003; FM Radio</ListItem>
+            </List>
+        </ListContainer>
       </div>
     </Layout>
   );

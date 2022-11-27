@@ -17,6 +17,7 @@ import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
+import { useRouter } from "next/router";
 import { useTheme } from "@mui/styles";
 import Menu from "@mui/material/Menu";
 import List from "@mui/material/List";
@@ -24,12 +25,17 @@ import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 import Layout from "../../layout/layout";
 
 const drawerWidth = 240;
-const navItems = ["Home", "cars", "About", "booking", "blog"];
+const navItems = [
+  { name: "Home", link: "/" },
+  { name: "cars", link: "/cars" },
+  { name: "About", link: "/" },
+  { name: "booking", link: "/" },
+  { name: "blog", link: "/" },
+];
 
 function Navbar(props) {
   const { window } = props;
@@ -44,6 +50,12 @@ function Navbar(props) {
     document.addEventListener("scroll", handleScroll);
     return () => document?.removeEventListener("scroll", handleScroll);
   }, []);
+
+  //switch between navbar
+  const handleActiveLink = (i, item) => {
+    router.push(item.link)
+    setActive(i)
+  }
 
   const handleScroll = () => {
     if (global.window.scrollY == 0) {
@@ -87,14 +99,21 @@ function Navbar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        <Image src={require("../../assets/logo.png")} alt="logo" priority={true}/>
+        <Image
+          src={require("../../assets/logo.png")}
+          alt="logo"
+          priority={true}
+        />
       </Typography>
       <Divider />
       <List>
         {navItems.map((item, i) => (
           <ListItem key={i} disablePadding>
-            <ListItemButton sx={navStyle}>
-              <ListItemText primary={item} sx={{ color: "#000" }} />
+            <ListItemButton
+              sx={navStyle}
+              onClick={() => router.push(item.link)}
+            >
+              <ListItemText primary={item.name} sx={{ color: "#000" }} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -113,7 +132,11 @@ function Navbar(props) {
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
-          <Link href="/setting" style={{ color: "#444" }} onClick={() => setActive(5)}>
+          <Link
+            href="/setting"
+            style={{ color: "#444" }}
+            onClick={() => setActive(5)}
+          >
             Settings
           </Link>
         </MenuItem>
@@ -165,9 +188,9 @@ function Navbar(props) {
                   key={i}
                   sx={active == i ? navActiveStyle : navStyle}
                   active={active}
-                  onClick={() => setActive(i)}
+                  onClick={() => handleActiveLink(i, item)}
                 >
-                  {item}
+                  {item.name}
                 </Button>
               ))}
               <Tooltip title="Account settings">
@@ -236,7 +259,11 @@ function Navbar(props) {
                 <ListItemIcon>
                   <Settings fontSize="small" />
                 </ListItemIcon>
-                <Link href="/setting" style={{ color: "#444" }} onClick={() => setActive(5)}>
+                <Link
+                  href="/setting"
+                  style={{ color: "#444" }}
+                  onClick={() => setActive(5)}
+                >
                   Settings
                 </Link>
               </MenuItem>

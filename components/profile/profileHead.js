@@ -18,7 +18,7 @@ const ProfileHead = (props) => {
         <Avatar
           alt="avatar"
           sx={{ width: 168, height: 168 }}
-          img={props.avatar ? props.avatar : null}
+          img={props.avatar?.code ? null : props.avatar}
         />
       </Grid>
       <Grid item md={8} sm={8} xs={12}>

@@ -47,7 +47,7 @@ export const SettingContainer = styled.div`
 `;
 
 export const inputText = {
-  margin: "40px 30px 40px 0",
+  margin: "40px 30px 60px 0",
 };
 
 export const ContainerDiv = styled.div`

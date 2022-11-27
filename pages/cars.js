@@ -19,12 +19,12 @@ export default function Home() {
         <Cover />
         <Filter />
         <Grid container>
-          <Grid sm={9}>
+          <Grid item sm={9}>
             {[...Array(5)].map((ele, i) => (
               <Item key={i} image={image.src} name="Audi A4" />
             ))}
           </Grid>
-          <Grid sm={3}>
+          <Grid item sm={3}>
 
           </Grid>
         </Grid>

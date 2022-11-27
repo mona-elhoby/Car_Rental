@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import Checkbox from '@mui/material/Checkbox';
+import {Checkbox, FormControlLabel} from "@mui/material";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -13,8 +13,8 @@ import {
 } from "../../store/reducer/profile";
 import { SettingBtn, SettingContainer } from "../../components/profile/style";
 import { getCountry } from "../../store/reducer/constant/country";
-import ChangePassword from './changePassword'
-import Signature from './signature'
+import ChangePassword from "./changePassword";
+import Signature from "./signature";
 
 const Setting = () => {
   const [profile, setProfile] = useState("");
@@ -29,7 +29,7 @@ const Setting = () => {
   const [attachedFile, setAttachedFile] = useState("");
   const [options, setOptions] = useState("");
   const [checked, setChecked] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProfile()).then((res) => {
@@ -49,41 +49,41 @@ const Setting = () => {
   }, [dispatch]);
   //dispatch update function
   const handleUpdateInputs = () => {
-    dispatch(updateProfile({
+    dispatch(
+      updateProfile({
         firstName: firstName,
         lastName: lastName,
         gender: gender,
-        nationality: options?.find(item => item?.name == nationality)?.id,
-        phone: phoneKey.includes("+")
-          ? phoneKey
-          : "+" + phoneKey + "" + phone,
+        nationality: options?.find((item) => item?.name == nationality)?.id,
+        phone: phoneKey.includes("+") ? phoneKey : "+" + phoneKey + "" + phone,
         email: email,
-      }))
-      .then((res) => {
-        console.log(res.payload);
-        if (res.payload.code == "0625") {
-          setValidation(true);
-        } else if (res.payload == "OK") {
-          router.push("/profile");
-        }
-      });
+      })
+    ).then((res) => {
+      console.log(res.payload);
+      if (res.payload.code == "0625") {
+        setValidation(true);
+      } else if (res.payload == "OK") {
+        router.push("/profile");
+      }
+    });
   };
   // upload avatar
   const handleChangeAttached = (e) => {
-    dispatch(updateProfileFiles(e.target.files[0]))
-      .then((res) => console.log(res));
+    dispatch(updateProfileFiles(e.target.files[0])).then((res) =>
+      console.log(res)
+    );
   };
   const handlegetNationality = (name) => {
-    console.log(name)
-    dispatch(getCountry(name)).then((res) => setOptions(res?.payload?.data?.data));
+    console.log(name);
+    dispatch(getCountry(name)).then((res) =>
+      setOptions(res?.payload?.data?.data)
+    );
   };
   return (
     <SettingContainer>
       <SettingForm
         firstName={firstName}
-        handleChangeFName={(e) =>
-          setFirstName(e.target.value)
-        }
+        handleChangeFName={(e) => setFirstName(e.target.value)}
         lastName={lastName}
         handleChangeLName={(e) => setLastName(e.target.value)}
         email={email}
@@ -101,17 +101,21 @@ const Setting = () => {
         phoneValid={validation}
         attachedFile={attachedFile}
         handleChangeAttached={handleChangeAttached}
-        getNationality={e => handlegetNationality(e)}
+        getNationality={(e) => handlegetNationality(e)}
         options={options}
       />
-      <Checkbox
-      checked={checked}
-      onChange={React.useCallback(e=>setChecked(e.target.checked),[checked])}
-      inputProps={{ 'aria-label': 'controlled' }}
-    />
-      {
-        checked ? <ChangePassword /> : null
-      }
+       <FormControlLabel
+        checked={checked}
+        onChange={React.useCallback(
+          (e) => setChecked(e.target.checked),
+          [checked]
+        )}
+          // value="Change Password"
+          control={<Checkbox />}
+          label="Change Password"
+          labelPlacement="end"
+        />
+      {checked ? <ChangePassword /> : null}
       <Signature />
       <div className={styles.btnContainer}>
         <SettingBtn onClick={handleUpdateInputs}>Update</SettingBtn>
@@ -124,6 +128,5 @@ const Setting = () => {
     </SettingContainer>
   );
 };
-
 
 export default Setting;

@@ -31,7 +31,7 @@ const Signup = () => {
       handleLogin={(e) => {
         console.log("value: ", value, "password: ", password);
         setCounter(0);
-        if (!value) {
+        if (!value || value?.includes("@")) {
           setPhoneValidate(true);
         }
         if (password) {
@@ -43,10 +43,10 @@ const Signup = () => {
             setPasswordValidate(true);
           }
         }
-        if (!password) {
+        if (!password && value) {
           dispatch(
             GetOTP({
-              email: value?.includes("@") ? value : undefined,
+              // email: value?.includes("@") ? value : undefined,
               phone: !value?.includes("@") ? value : undefined,
             })
           ).then((res) => {

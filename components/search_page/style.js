@@ -28,3 +28,30 @@ export const RatingText = styled(Typography)`
   margin-left: 5px;
   font-size: 12px;
 `;
+
+export const Strong = styled.h3`
+  display: inline-block
+
+`;
+
+export const Smalltxt = styled.span`
+  font-size: 10px;
+  margin-top: -2px;
+    display: block;
+    text-align: center;
+`;
+
+export const ListContainer = styled.div`
+  display: ${props => props.smallScreen ? 'block' : 'flex'};
+  justify-content: center;
+  margin-bottom: 50px;
+  margin-top: ${props => props.smallScreen ? '5px' : '-35px'};
+`;
+
+export const ListItem = styled.li`
+  font-size: 13px
+`;
+
+export const List = styled.ul`
+  margin-right: 40px
+`;

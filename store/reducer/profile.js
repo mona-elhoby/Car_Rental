@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { HYDRATE } from 'next-redux-wrapper';
+import { HYDRATE } from "next-redux-wrapper";
 import axios from "axios";
 
 import { api_url, config } from "../config";
@@ -58,12 +58,33 @@ export const updateProfileFiles = createAsyncThunk(
 );
 
 //get image
-export const getImage = createAsyncThunk("profile/image",
-async(id, thunkAPI) => {
-  const res = await axios.get(`${api_url}/static/${id}`)
-  return res
-})
+export const getImage = createAsyncThunk(
+  "profile/image",
+  async (id, thunkAPI) => {
+    const res = await axios.get(`${api_url}/static/${id}`, config);
+    return res;
+  }
+);
 
+//change Passowrd
+export const changePassword = createAsyncThunk(
+  "profile/updatePAssword",
+  async (data, thunkAPI) => {
+    console.log(data);
+    const res = await axios.patch(`${api_url}/user/password`, data, config);
+    return res;
+  }
+);
+
+//delete file
+export const deleteFile = createAsyncThunk(
+  "profile/removeFile",
+  async (fileId, thunkAPI) => {
+    const res = await axios.delete(`${api_url}/user/mine/${fileId}`, config);
+    console.log(res)
+    return res;
+  }
+);
 
 const profileSlice = createSlice({
   name: "profile",
@@ -72,18 +93,18 @@ const profileSlice = createSlice({
     isLoading: false,
     accessToken: null,
     refreshToken: null,
-    profile: null
+    profile: null,
   },
   extraReducers: {
     [getProfile.fulfilled]: (state, action) => {
-      state.profile = action.payload
+      state.profile = action.payload;
     },
     [HYDRATE]: (state, action) => {
-      return state = {
-          ...state,
-          ...action.payload
-      };
-  },
+      return (state = {
+        ...state,
+        ...action.payload,
+      });
+    },
   },
 });
 

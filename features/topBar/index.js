@@ -65,7 +65,7 @@ const TopBar = () => {
               <SocialWrapperulli>
                 <SocialWrapperullia
                   theme={theme}
-                  href="http://instagram.com/theplanetd"
+                  href="http://instagram.com"
                 >
                   <InstagramIcon
                     sx={{ fontSize: { md: "16px", sm: "12px" } }}
