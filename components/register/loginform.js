@@ -41,13 +41,13 @@ const Form = (props) => {
             <PhoneIphoneIconStyle sx={IconStyle} theme={theme}/>
             <LoginInput
               type="text"
-              placeholder="Phone"
+              placeholder="Phone / Email"
               value={props.value}
               onChange={props.handleChangeValue}
               required
               error={props.phoneValid ? true : false}
             />
-            {props.phoneValid ? (<FormHelperText sx={{marginTop: '0 !important'}}>check your Phone Number</FormHelperText>) : null}
+            {props.phoneValid ? (<FormHelperText sx={{marginTop: '0 !important'}}>check your Phone Number / Email</FormHelperText>) : null}
           </LoginFeild>
           <FormControl>
             <FormControlLabel

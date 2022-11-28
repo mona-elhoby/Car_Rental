@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+import { useCookies } from "react-cookie";
 
 import Form from "../../components/register/loginform";
 import { GetOTP, Login } from "../../store/reducer/auth";
@@ -17,6 +18,7 @@ const Signup = () => {
   const [showCounter, setShowCounter] = useState(false);
   const [phoneValidate, setPhoneValidate] = useState(false);
   const [passwordValidate, setPasswordValidate] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const router = useRouter();
   return (
     <Form
@@ -46,7 +48,7 @@ const Signup = () => {
         if (!password && value) {
           dispatch(
             GetOTP({
-              // email: value?.includes("@") ? value : undefined,
+              email: value?.includes("@") ? value : undefined,
               phone: !value?.includes("@") ? value : undefined,
             })
           ).then((res) => {
@@ -81,6 +83,8 @@ const Signup = () => {
           ).then((res) => {
             console.log(res)
             if (res.payload?.res?.status == 200) {
+              setCookie("user", res.payload.res.data, '/')
+              localStorage.setItem("auth", res.payload.res.data)
               router.push("/");
             } else if (res.payload?.res?.data?.code?.includes(603)) {
               setPasswordValidate(true);

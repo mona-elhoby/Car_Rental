@@ -8,7 +8,7 @@ import Layout from "../../layout/layout";
 import { CoverSearchSelect, InputSearch, SpanIcon } from "../home/cover/style";
 import {FilterWrapper} from './style'
 
-const Cover = () => {
+const Cover = props => {
     const theme = useTheme()
   return (
     <div>
@@ -17,7 +17,7 @@ const Cover = () => {
             <Grid container>
               <Grid item xs={12} sm={3}>
                 <div style={{position: 'relative'}}>
-                  <CoverSearchSelect>
+                  <CoverSearchSelect onChange={props.handleChangeMaker}>
                     <option value="">Any Brand</option>
                     <option value="Audi">Audi</option>
                     <option value="BMW">BMW</option>
@@ -31,7 +31,7 @@ const Cover = () => {
               </Grid>
               <Grid item xs={12} sm={3}>
                 <div style={{position: 'relative'}}>
-                  <CoverSearchSelect>
+                  <CoverSearchSelect onChange={props.handleChangeModel}>
                     <option value="">Any Type</option>
                     <option value="Coupe">Coupe</option>
                     <option value="Sedan">Sedan</option>

@@ -3,21 +3,6 @@ import axios from "axios";
 
 import { api_url } from "./config";
 
-// Add a request interceptor
-axios.interceptors.request.use(
-  (config) => {
-    const token = JSON.parse(localStorage.getItem("auth"))?.accessToken;
-    if (token) {
-      config.headers["Authorization"] = "Bearer " + token;
-    }
-    config.headers["Content-Type"] = "application/json";
-    // console.log("config: ", config)
-    return config;
-  },
-  (error) => {
-    Promise.reject(error);
-  }
-);
 
 // inceptors response
 axios.interceptors.response.use(

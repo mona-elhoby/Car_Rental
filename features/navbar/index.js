@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
@@ -25,6 +24,8 @@ import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
+import { useCookies } from "react-cookie";
+
 
 import Layout from "../../layout/layout";
 
@@ -46,6 +47,7 @@ function Navbar(props) {
   const [top, setTop] = useState(44);
   const [active, setActive] = useState(0);
 
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
   useEffect(() => {
     document.addEventListener("scroll", handleScroll);
     return () => document?.removeEventListener("scroll", handleScroll);
@@ -94,6 +96,7 @@ function Navbar(props) {
   //logout
   const handleLogout = () => {
     localStorage.removeItem("auth");
+    removeCookie("user")
     router.push("/login");
   };
   const drawer = (

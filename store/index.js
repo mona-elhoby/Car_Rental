@@ -4,6 +4,7 @@ import { createWrapper } from 'next-redux-wrapper';
 import authSlice from './reducer/auth'
 import countrySlice from './reducer/constant/country'
 import profileSlice from './reducer/profile'
+import carSlice from "./reducer/cars"
 
 
 const makeStore = () => {
@@ -11,7 +12,8 @@ const makeStore = () => {
 		reducer: {
 			auth: authSlice,
 			country: countrySlice,
-			profile: profileSlice
+			profile: profileSlice,
+			cars: carSlice
 		},
 		devTools: true,
 		middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false })

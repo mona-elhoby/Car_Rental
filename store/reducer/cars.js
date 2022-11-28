@@ -1,16 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import { api_url } from "../config";
+import { api_url, config } from "../config";
 
-//signup
+//get cars
 export const getCars = createAsyncThunk(
   "cars/get",
-  async (_, thunkAPI) => {
-    const res= axios.get(`${api_url}/vehicle?total=true`)
-    console.log(res)
+  async ({ theParams }, thunkAPI) => {
+    const params ={}
+    if (theParams?.company) params['company'] = theParams?.company;
+    if (theParams?.branch) params['branch'] = theParams?.branch;
+    const res= axios.get(`${api_url}/vehicle?total=true`,{params: params})
+    // console.log(res)
     return res
-  })
+  });
 
 
 const carSlice = createSlice({
@@ -20,11 +23,16 @@ const carSlice = createSlice({
     },
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getCars.fulfilled, (state, { payload }) => {
-            console.log(payload)
-            state.resp = payload
+        builder.addCase(getCars.fulfilled, (state, action) => {
+            // console.log(action)
+            state.cars = action.payload?.data
         })
     }, 
+    // extraReducers: {
+    //   [getCars.fulfilled]: (state, action) => {
+    //     state.cars = action.payload?.data
+    //   }
+    // }
 })
 
 export default carSlice.reducer;

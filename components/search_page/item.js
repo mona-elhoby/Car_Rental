@@ -42,7 +42,7 @@ const Item = (props) => {
       />
       <div>
         <div>
-          <ImgName>{props.name}</ImgName>
+          <ImgName>{props.car?.maker} {props.car?.model} <small style={{fontWeight: 400}}>{props.car.manufacturingYear}</small></ImgName>
           <p>
             <Rating
               name="hover-feedback"
@@ -90,7 +90,7 @@ const Item = (props) => {
             <CarPrice>
               <div>
                 <sup>$</sup>
-                <Strong>64</Strong>
+                <Strong>{props.car?.pricing?.daily?.price}</Strong>
               </div>{" "}
               <Smalltxt>Per Day</Smalltxt>
             </CarPrice>

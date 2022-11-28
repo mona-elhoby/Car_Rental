@@ -1,5 +1,6 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { CookiesProvider, useCookies  } from "react-cookie";
 import axios from "axios";
 
 import { api_url } from "../config";
@@ -38,7 +39,7 @@ export const Login = createAsyncThunk(
       },
     });
     // console.log(res)
-    localStorage.setItem("auth", JSON.stringify(res.data.data));
+    // localStorage.setItem("auth", JSON.stringify(res.data.data));
 	console.log(res)
     return { res, userInfo };
   }

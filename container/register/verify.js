@@ -1,12 +1,14 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useRouter } from 'next/router'
+import { useCookies } from "react-cookie";
 
 import { LoginFeild, LoginSubmit, VerifyInput, IconSubmit } from '../../components/register/style';
 import { Login } from "../../store/reducer/auth";
 
 const Verify = () => {
     const [state, setState] = useState({ele0: '', ele1: '', ele2: '',ele3: '', ele4: '', ele5: ''})
+    const [cookies, setCookie, removeCookie] = useCookies(['user']);
     const dispatch = useDispatch()
     const {valueOTP} = useSelector(state => state.auth)
     const router = useRouter()
@@ -31,6 +33,8 @@ const Verify = () => {
         ).then(res => {
           console.log(res.payload)
             if(res.payload?.res?.status == 200){
+              setCookie("user", res.payload.res.data, '/')
+              localStorage.setItem("auth", res.payload.res.data)
                 router.push('/')
             }
         });
