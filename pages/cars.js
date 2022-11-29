@@ -1,20 +1,32 @@
-import { useEffect } from "react";
+import { React, useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 import Filter from "../components/search_page/filter";
 import Cover from "../components/search_page/cover";
 import Item from "../components/search_page/item";
 import Layout from "../layout/pageLayout";
-import image from "../assets/Audi-A4.jpg";
 import { Grid } from "@mui/material";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 
-import { api_url, config } from "../store/config";
-
-import { getCars } from "../store/reducer/cars";
+import { api_url } from "../store/config";
 import { getImage } from "../store/reducer/profile";
+import PaginationContainer from '../components/pagination'
 import { storeWrapper } from "../store/index";
 
 function Cars(props) {
+const [images, setImages] = useState([])
+const [page, setPage] = useState(1);
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    let newArr = []
+    props.cars?.data?.map( ele => {
+        dispatch(getImage(ele.image)).then(res => {
+          newArr.push({img: res.payload.request.responseURL, id: ele.image})
+          setImages(newArr)
+        })
+    })
+  }, [dispatch])
 
   return (
     <div>
@@ -27,11 +39,12 @@ function Cars(props) {
         <Cover />
         <Filter />
         <Grid container>
-          <Grid item sm={9}>
+          <Grid item sm={9} xs={12}>
             {/* <GetCars /> */}
             {props.cars?.data?.map((ele, i) => (
-              <Item key={i} image={image.src} car={ele} />
+              <Item key={i} image={images?.find(img => img.id == ele.image)?.img} car={ele} />
             ))}
+            <PaginationContainer count={Math.ceil(props.cars?.totalRecords / 10)} page={page} handleChange={useCallback((e, val) => setPage(val), [])}/>
           </Grid>
           <Grid item sm={3}>
           </Grid>
@@ -50,24 +63,8 @@ export const getServerSideProps = storeWrapper.getServerSideProps(
         "Content-Type": "application/json",
       },
     });
-    var newArr =[]
-     result.data.data?.map(ele => {
-      axios.get(`${api_url}/static/${ele.image}`, {
-        params: null,
-        headers: {
-          "Authorization": `Bearer ${JSON.parse(req.cookies.user)?.data?.accessToken}`,
-          "Content-Type": "application/json",
-        },
-      }).then(response => {
-        newArr.push({
-          id: ele.image,
-          image: response.data
-        })
-      })
-      console.log("newArr: ", newArr)
-      return newArr
-    })
-    console.log("Images: ", newArr)
+   
+    
     return { props: { cars: result.data} };
   }
 );

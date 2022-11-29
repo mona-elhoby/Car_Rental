@@ -1,6 +1,5 @@
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { CookiesProvider, useCookies  } from "react-cookie";
+import { CookiesProvider, useCookies } from "react-cookie";
 import axios from "axios";
 
 import { api_url } from "../config";
@@ -14,7 +13,7 @@ export const signup = createAsyncThunk(
         "Content-Type": "application/json",
       },
     });
-	console.log(res)
+    console.log(res);
     return res;
   }
 );
@@ -40,11 +39,10 @@ export const Login = createAsyncThunk(
     });
     // console.log(res)
     // localStorage.setItem("auth", JSON.stringify(res.data.data));
-	console.log(res)
+    console.log(res);
     return { res, userInfo };
   }
 );
-
 
 //verify phone number
 export const validatePhoneNumber = createAsyncThunk(
@@ -64,11 +62,17 @@ const authSlice = createSlice({
   initialState: {
     valueOTP: null,
   },
-  extraReducers: {
-    [GetOTP.fulfilled]: (state, action) => {
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(GetOTP.fulfilled, (state, action) => {
       state.valueOTP = action.payload.value;
-    },
+    });
   },
+  // extraReducers: {
+  //   [GetOTP.fulfilled]: (state, action) => {
+  //     state.valueOTP = action.payload.value;
+  //   },
+  // },
 });
 
 export default authSlice.reducer;

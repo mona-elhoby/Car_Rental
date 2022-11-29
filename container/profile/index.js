@@ -13,7 +13,7 @@ const ProfileContainer = () => {
     useEffect(()=>{
       dispatch(getProfile()).then(res => {
         setUser(res.payload.data)
-        dispatch(getImage(res.payload.data?.avatar)).then(res => setImage(res.payload.data))
+        dispatch(getImage(res.payload.data?.avatar)).then(result => setImage(result.payload?.request.responseURL))
       })
     },[dispatch])
 

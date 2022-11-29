@@ -45,7 +45,6 @@ export const updateProfileFiles = createAsyncThunk(
     for (var key of formData.entries()) {
       console.log("key: ", key[0] + ", " + key[1]);
     }
-
     const res = await axios.post(`${api_url}/user/mine/file`, formData, {
       headers: {
         "content-type": "multipart/form-data",
@@ -95,17 +94,23 @@ const profileSlice = createSlice({
     refreshToken: null,
     profile: null,
   },
-  extraReducers: {
-    [getProfile.fulfilled]: (state, action) => {
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getProfile.fulfilled, (state, action) => {
       state.profile = action.payload;
-    },
-    [HYDRATE]: (state, action) => {
-      return (state = {
-        ...state,
-        ...action.payload,
-      });
-    },
-  },
+    })
+  }
+  // extraReducers: {
+  //   [getProfile.fulfilled]: (state, action) => {
+  //     state.profile = action.payload;
+  //   },
+  //   [HYDRATE]: (state, action) => {
+  //     return (state = {
+  //       ...state,
+  //       ...action.payload,
+  //     });
+  //   },
+  // },
 });
 
 export default profileSlice.reducer;

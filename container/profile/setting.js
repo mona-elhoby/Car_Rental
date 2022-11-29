@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import {Checkbox, FormControlLabel} from "@mui/material";
+import { Checkbox, FormControlLabel } from "@mui/material";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -10,11 +10,13 @@ import {
   getProfile,
   updateProfile,
   updateProfileFiles,
+  getImage,
 } from "../../store/reducer/profile";
 import { SettingBtn, SettingContainer } from "../../components/profile/style";
 import { getCountry } from "../../store/reducer/constant/country";
 import ChangePassword from "./changePassword";
 import Signature from "./signature";
+import { countries } from "../../services/constant-countries";
 
 const Setting = () => {
   const [profile, setProfile] = useState("");
@@ -29,6 +31,7 @@ const Setting = () => {
   const [attachedFile, setAttachedFile] = useState("");
   const [options, setOptions] = useState("");
   const [checked, setChecked] = useState(false);
+  const [image, setImage] = useState("");
   const router = useRouter();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -36,27 +39,39 @@ const Setting = () => {
       setProfile(res.payload.data);
       setFirstName(res.payload.data?.firstName);
       setLastName(res.payload.data?.lastName);
-      setPhoneKey(res.payload.data?.nationality?.phone);
+      setPhoneKey(
+        countries?.find((ele) => res.payload?.data?.phone?.includes(ele.phone))
+          ?.phone
+      );
       setPhone(
         res.payload?.data?.phone?.slice(
-          res.payload.data?.nationality?.phone.length + 1
+          countries?.find((ele) =>
+            res.payload?.data?.phone?.includes(ele.phone)
+          )?.phone?.length
         )
       );
       setEmail(res.payload?.data?.email);
-      setNationality(res.payload.data?.nationality?.name);
+      setNationality(
+        res?.payload?.data?.nationality
+          ? res?.payload?.data?.nationality?.name
+          : ""
+      );
       setGender(res.payload.data?.gender);
+      dispatch(getImage(res.payload.data?.avatar)).then((response) =>
+        setImage(response.payload.request.responseURL)
+      );
     });
   }, [dispatch]);
   //dispatch update function
   const handleUpdateInputs = () => {
     dispatch(
       updateProfile({
-        firstName: firstName,
-        lastName: lastName,
-        gender: gender,
-        nationality: options?.find((item) => item?.name == nationality)?.id,
-        phone: phoneKey.includes("+") ? phoneKey : "+" + phoneKey + "" + phone,
-        email: email,
+        firstName: firstName ? firstName : undefined,
+        lastName: lastName ? lastName : undefined,
+        gender: gender ? gender : undefined,
+        nationality: nationality ? options?.find((item) => item?.name == nationality)?.id : undefined,
+        phone: phoneKey.includes("+") ? phoneKey + "" + phone : "+" + phoneKey + "" + phone,
+        email: email ? email : undefined,
       })
     ).then((res) => {
       console.log(res.payload);
@@ -82,6 +97,7 @@ const Setting = () => {
   return (
     <SettingContainer>
       <SettingForm
+        avatar={image}
         firstName={firstName}
         handleChangeFName={(e) => setFirstName(e.target.value)}
         lastName={lastName}
@@ -104,17 +120,17 @@ const Setting = () => {
         getNationality={(e) => handlegetNationality(e)}
         options={options}
       />
-       <FormControlLabel
+      <FormControlLabel
         checked={checked}
         onChange={React.useCallback(
           (e) => setChecked(e.target.checked),
           [checked]
         )}
-          // value="Change Password"
-          control={<Checkbox />}
-          label="Change Password"
-          labelPlacement="end"
-        />
+        // value="Change Password"
+        control={<Checkbox />}
+        label="Change Password"
+        labelPlacement="end"
+      />
       {checked ? <ChangePassword /> : null}
       <Signature />
       <div className={styles.btnContainer}>

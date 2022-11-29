@@ -68,10 +68,10 @@ export const BgBubblesLi = styled.li`
   -webkit-animation: ${squareAnimation} 25s infinite;
   animation: ${squareAnimation} 25s infinite;
   transition-timing-function: linear;
-  &:nth-child(1) {
+  &:nth-of-type(1) {
     left: 10%;
   }
-  &:nth-child(2) {
+  &:nth-of-type(2) {
     left: 20%;
     width: 80px;
     height: 80px;
@@ -80,12 +80,12 @@ export const BgBubblesLi = styled.li`
     -webkit-animation-duration: 17s;
     animation-duration: 17s;
   }
-  &:nth-child(3) {
+  &:nth-of-type(3) {
     left: 25%;
     -webkit-animation-delay: 0.1s;
     animation-delay: 0.1s;
   }
-  &:nth-child(4) {
+  &:nth-of-type(4) {
     left: 40%;
     width: 60px;
     height: 60px;
@@ -93,10 +93,10 @@ export const BgBubblesLi = styled.li`
     animation-duration: 22s;
     background-color: rgba(255, 255, 255, 0.25);
   }
-  &:nth-child(5) {
+  &:nth-of-type(5) {
     left: 70%;
   }
-  &:nth-child(6) {
+  &:nth-of-type(6) {
     left: 80%;
     width: 120px;
     height: 120px;
@@ -104,14 +104,14 @@ export const BgBubblesLi = styled.li`
     animation-delay: 0.1s;
     background-color: rgba(255, 255, 255, 0.2);
   }
-  &:nth-child(7) {
+  &:nth-of-type(7) {
     left: 32%;
     width: 160px;
     height: 160px;
     -webkit-animation-delay: 7s;
     animation-delay: 7s;
   }
-  &:nth-child(8) {
+  &:nth-of-type(8) {
     left: 55%;
     width: 20px;
     height: 20px;
@@ -120,7 +120,7 @@ export const BgBubblesLi = styled.li`
     -webkit-animation-duration: 40s;
     animation-duration: 40s;
   }
-  &:nth-child(9) {
+  &:nth-of-type(9) {
     left: 25%;
     width: 10px;
     height: 10px;
@@ -130,7 +130,7 @@ export const BgBubblesLi = styled.li`
     animation-duration: 40s;
     background-color: rgba(255, 255, 255, 0.3);
   }
-  &:nth-child(10) {
+  &:nth-of-type(10) {
     left: 90%;
     width: 160px;
     height: 160px;

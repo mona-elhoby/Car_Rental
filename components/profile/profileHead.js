@@ -4,7 +4,7 @@ import TransgenderIcon from "@mui/icons-material/Transgender";
 import { Avatar, Grid, Typography } from "@mui/material";
 import GppBadIcon from "@mui/icons-material/GppBad";
 import MailIcon from "@mui/icons-material/Mail";
-import { useTheme } from "@mui/styles";
+import { useTheme } from "@mui/material/styles";
 import Link from "next/link";
 import React from "react";
 
@@ -16,29 +16,34 @@ const ProfileHead = (props) => {
     <Grid container>
       <Grid item md={4} sm={4} xs={12}>
         <Avatar
-          alt="avatar"
+          alt="Remy Sharp"
           sx={{ width: 168, height: 168 }}
-          img={props.avatar?.code ? null : props.avatar}
-        />
+          src={props.avatar?.code ? null : props.avatar}
+        >
+          {props.avatar?.code
+            ? `${props.user.firstName?.slice(
+                0,
+                1
+              )} ${props.user.lastName?.slice(0, 1)}`
+            : null}
+        </Avatar>
       </Grid>
       <Grid item md={8} sm={8} xs={12}>
         <Typography variant="h6" sx={header}>
           {props.user?.firstName + " " + props.user?.lastName}
         </Typography>
-        {props.user?.isVerified.phone || props.user?.isVerified.email ? (
+        {props.user?.isVerified?.phone || props.user?.isVerified?.email ? (
           <VerifiedUserIcon sx={{ color: theme.palette.secondary.main }} />
         ) : (
           <GppBadIcon />
         )}
-        {console.log(props.avatar)}
-        <img src={props.avatar} />
         <Button theme={theme}>
           <Link href="/setting" style={{ color: "#FFF" }}>
             update
           </Link>
         </Button>
         <Typography variant="caption" sx={nationality}>
-          {props.user?.nationality.name}
+          {props.user?.nationality?.name}
           <img
             loading="lazy"
             width="20"

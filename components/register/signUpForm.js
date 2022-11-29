@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { useTheme } from "@mui/styles";
+import { useTheme } from "@mui/material/styles";
 import FormHelperText from "@mui/material/FormHelperText";
 import 'react-phone-number-input/style.css'
 import PhoneInput from "react-phone-number-input";

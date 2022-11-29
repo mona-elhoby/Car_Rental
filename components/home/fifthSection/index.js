@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import CarRentalIcon from "@mui/icons-material/CarRental";
-import { useTheme } from "@mui/styles";
+import { useTheme } from "@mui/material/styles";
 
 import Layout from "../../../layout/layout";
 import Header from "../../../features/header";

@@ -17,7 +17,7 @@ import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import { useRouter } from "next/router";
-import { useTheme } from "@mui/styles";
+import { useTheme } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 import List from "@mui/material/List";
 import Box from "@mui/material/Box";
@@ -25,7 +25,6 @@ import PropTypes from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
 import { useCookies } from "react-cookie";
-
 
 import Layout from "../../layout/layout";
 
@@ -47,7 +46,7 @@ function Navbar(props) {
   const [top, setTop] = useState(44);
   const [active, setActive] = useState(0);
 
-  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   useEffect(() => {
     document.addEventListener("scroll", handleScroll);
     return () => document?.removeEventListener("scroll", handleScroll);
@@ -55,9 +54,9 @@ function Navbar(props) {
 
   //switch between navbar
   const handleActiveLink = (i, item) => {
-    router.push(item.link)
-    setActive(i)
-  }
+    router.push(item.link);
+    setActive(i);
+  };
 
   const handleScroll = () => {
     if (global.window.scrollY == 0) {
@@ -95,8 +94,8 @@ function Navbar(props) {
 
   //logout
   const handleLogout = () => {
-    localStorage.removeItem("auth");
-    removeCookie("user")
+    localStorage.clear();
+    removeCookie("user");
     router.push("/login");
   };
   const drawer = (
@@ -205,7 +204,17 @@ function Navbar(props) {
                   aria-haspopup="true"
                   aria-expanded={open ? "true" : undefined}
                 >
-                  <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                  <Avatar sx={{ width: 32, height: 32 }}>
+                    {window !== undefined ? localStorage
+                      .getItem("firstName")
+                      .slice(0, 1)
+                      .toLocaleUpperCase() +
+                      " " +
+                      localStorage
+                        .getItem("lastName")
+                        .slice(0, 1)
+                        .toLocaleUpperCase() : null}
+                  </Avatar>
                 </IconButton>
               </Tooltip>
             </Box>
@@ -221,9 +230,9 @@ function Navbar(props) {
                   overflow: "visible",
                   filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
                   mt: 1.5,
-                  right: 102,
+                  right: {lg: 102, md: 102, sm: 40},
                   left: "auto !important",
-                  top: "90px !important",
+                  top: "100px !important",
                   "& .MuiAvatar-root": {
                     width: 32,
                     height: 32,

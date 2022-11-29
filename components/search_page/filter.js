@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import Image from "next/image";
-import { useTheme } from '@mui/styles';
+import { useTheme } from '@mui/material/styles';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 
 import Layout from "../../layout/layout";

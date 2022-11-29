@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme } from "@mui/styles";
+import { useTheme } from "@mui/material/styles";
 
 import Header from "../../../features/header";
 import { SectionContainer, SubHeader, Button } from "./style";

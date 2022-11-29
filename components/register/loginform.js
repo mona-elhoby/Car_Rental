@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import Link from "next/link";
-import { useTheme } from "@mui/styles";
+import { useTheme } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from '@mui/material/FormHelperText';

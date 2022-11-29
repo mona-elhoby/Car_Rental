@@ -6,7 +6,6 @@ import {
   RadioGroup,
   FormLabel,
   Radio,
-  useMediaQuery,
   FormHelperText,
   Autocomplete,
   Grid,
@@ -23,15 +22,15 @@ const SettingForm = (props) => {
     <div>
       <AvaterContainer>
         <Avatar
-          alt="avatar"
-          sx={{ width: 168, height: 168, margin: "auto auto 20px" }}
-          //   img={}
-        />
+          alt="Remy Sharp"
+          sx={{ width: 168, height: 168, margin: '0 auto 10px' }}
+          src={!props.avatar ? null : props.avatar}
+        >{!props.avatar ? `${props.user.firstName?.slice(0,1)} ${props.user.lastName?.slice(0,1)}` : null }</Avatar>
         <input
           type="file"
           onChange={props.handleChangeAttached}
           value={props.attachedFile}
-        />
+        />{console.log("props.avatar", props.avatar)}
       </AvaterContainer>
       <Grid container>
         <Grid item sm={4} xs={12}>
@@ -116,13 +115,13 @@ const SettingForm = (props) => {
               console.log("newValue: ", newValue);
               props.handleChangeNationality(newValue);
             }}
-            inputValue={props.nationality}
+            inputValue={props?.nationality}
             onInputChange={(event, newInputValue) => {
               console.log("newInputValue: ", newInputValue);
               props.getNationality(newInputValue);
             }}
             options={
-              props.options ? props.options?.map((option) => option.name) : []
+              props.options ? props?.options?.map((option) => option?.name) : []
             }
             renderInput={(params) => (
               <TextField {...params} label="Nationality" variant="standard" />

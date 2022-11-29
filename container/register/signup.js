@@ -81,7 +81,7 @@ const Signup = () => {
           !emailValidate &&
           !passwordValidate
         ) {
-          // dispatch(validatePhoneNumber(phoneKey + phoneNumber)).then(res => console.log(res))
+          dispatch(validatePhoneNumber(phoneKey + phoneNumber)).then(res => console.log(res))
           dispatch(
             signup({
               firstName: firstName ? firstName : undefined,

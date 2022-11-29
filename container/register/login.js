@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 
 import Form from "../../components/register/loginform";
 import { GetOTP, Login } from "../../store/reducer/auth";
+import { getProfile } from "../../store/reducer/profile";
 import {
   startTimer,
   millisToMinutesAndSeconds,
@@ -85,6 +86,10 @@ const Signup = () => {
             if (res.payload?.res?.status == 200) {
               setCookie("user", res.payload.res.data, '/')
               localStorage.setItem("auth", res.payload.res.data)
+              dispatch(getProfile()).then(res => {
+                localStorage.setItem("firstName", res.payload.data?.firstName);
+                localStorage.setItem("lastName", res.payload.data?.lastName);
+              })
               router.push("/");
             } else if (res.payload?.res?.data?.code?.includes(603)) {
               setPasswordValidate(true);

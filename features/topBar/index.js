@@ -8,7 +8,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import { useTheme } from "@mui/styles";
+import { useTheme } from "@mui/material/styles";
 
 import {
   WrapperDiv,
