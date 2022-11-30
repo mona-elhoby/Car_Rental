@@ -10,7 +10,7 @@ import axios from "axios";
 
 import { api_url } from "../store/config";
 import { getImage } from "../store/reducer/profile";
-import PaginationContainer from '../components/pagination'
+import PaginationContainer from '../features/pagination'
 import { storeWrapper } from "../store/index";
 
 function Cars(props) {

@@ -32,7 +32,7 @@ const Signup = () => {
       counter={counter}
       showCounter={showCounter}
       handleLogin={(e) => {
-        console.log("value: ", value, "password: ", password);
+        
         setCounter(0);
         if (!value || value?.includes("@")) {
           setPhoneValidate(true);
@@ -45,6 +45,8 @@ const Signup = () => {
           ) {
             setPasswordValidate(true);
           }
+        }else {
+          setPasswordValidate(false);
         }
         if (!password && value) {
           dispatch(
@@ -53,7 +55,6 @@ const Signup = () => {
               phone: !value?.includes("@") ? value : undefined,
             })
           ).then((res) => {
-            console.log("res: ", res);
             if (res?.payload?.res?.status == 200) {
               router.push("/verify");
             } else if (res?.payload?.res?.data?.code == 2101) {
@@ -66,7 +67,7 @@ const Signup = () => {
               // console.log(nextAttemp - firstAttemp)
               millisToMinutesAndSeconds(nextAttemp - firstAttemp);
               const time = Math.ceil((nextAttemp - firstAttemp) / 6000);
-              console.log(time);
+              // console.log(time);
               setShowCounter(true);
               startTimer(time, setCounter, setShowCounter);
             } else if (res?.payload?.res?.data?.code == 1101) {
@@ -82,10 +83,9 @@ const Signup = () => {
               code: undefined,
             })
           ).then((res) => {
-            console.log(res)
             if (res.payload?.res?.status == 200) {
               setCookie("user", res.payload.res.data, '/')
-              localStorage.setItem("auth", res.payload.res.data)
+        localStorage.setItem("auth", JSON.stringify(res.payload.res.data.data));
               dispatch(getProfile()).then(res => {
                 localStorage.setItem("firstName", res.payload.data?.firstName);
                 localStorage.setItem("lastName", res.payload.data?.lastName);

@@ -16,7 +16,7 @@ import { SettingBtn, SettingContainer } from "../../components/profile/style";
 import { getCountry } from "../../store/reducer/constant/country";
 import ChangePassword from "./changePassword";
 import Signature from "./signature";
-import { countries } from "../../services/constant-countries";
+import { countries } from "../../constant/constant-countries";
 
 const Setting = () => {
   const [profile, setProfile] = useState("");

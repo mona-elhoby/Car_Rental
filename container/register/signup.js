@@ -64,6 +64,8 @@ const Signup = () => {
           ) {
             setPasswordValidate(true);
           }
+        }else{
+          setPasswordValidate(false);
         }
         if (email) {
           if (
@@ -73,6 +75,8 @@ const Signup = () => {
           ) {
             setEmailValidate(true);
           }
+        }else{
+          setEmailValidate(false);
         }
         if (
           !fNameValidate &&
@@ -97,7 +101,6 @@ const Signup = () => {
                 : undefined,
             })
           ).then((res) => {
-            console.log(res);
             if (res?.payload?.status == 201) {
               router.push('/login')
             }

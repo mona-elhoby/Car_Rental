@@ -8,6 +8,7 @@ import { api_url } from "../config";
 export const signup = createAsyncThunk(
   "auth/signup",
   async (userInfo, thunkAPI) => {
+    console.log("userInfo: ", userInfo)
     const res = await axios.post(`${api_url}/auth/sign-up`, userInfo, {
       headers: {
         "Content-Type": "application/json",

@@ -11,18 +11,6 @@ class Documnet extends React.Component {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Work+Sans%3A100%2C200%2C300%2Cregular%2C500%2C600%2C700%2C800%2C900%7CPoppins%3A300%2Cregular%2C500%2C600%2C700%2C900&amp;subset"
           />
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.quilljs.com/1.3.7/quill.bubble.css"
-          ></link>
-          <Script src="https://cdn.quilljs.com/1.3.7/quill.js"></Script>
-          <Script src="https://cdn.jsdelivr.net/gh/T-vK/DynamicQuillTools@master/DynamicQuillTools.js"></Script>
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.quilljs.com/1.3.7/quill.snow.css"
-          ></link>
         </Head>
         <body>
           <Main />

@@ -48,7 +48,7 @@ const Verify = () => {
     ).then((res) => {
       if (res.payload?.res?.status == 200) {
         setCookie("user", res.payload.res.data, "/");
-        localStorage.setItem("auth", res.payload.res.data);
+        localStorage.setItem("auth", JSON.stringify(res.payload.res.data.data));
         dispatch(getProfile()).then(result => {
           localStorage.setItem("firstName", result.payload.data?.firstName);
           localStorage.setItem("lastName", result.payload.data?.lastName);
